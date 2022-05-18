@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/pr_data_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:background="@drawable/round_corners"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/fullname"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="20dp"
+                        android:textColor="@color/md_theme_light_onSecondary"
+                        android:textSize="20sp" />
+
+                    <TextView
+                        android:id="@+id/fullgroup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingRight="20dp"
+                        android:paddingBottom="10dp"
+                        android:textColor="@color/md_theme_light_onSecondary"
+                        android:textSize="16sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:text="Личные данные"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="20sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Электронная почта"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/pEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:enabled="false"
+                        android:inputType="textEmailAddress" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Адрес"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp">
+
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/pAdress"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textPostalAddress" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Телефон"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/pTel"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="phone"
+                        android:text="" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="СНИЛС"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/pSnils"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="20dp"
+                    android:text="Ссылки на профили в соцсетях"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="20sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="ВКонтакте"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/pVK"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Facebook"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/pFacebook"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Instagram"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/pInsta"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Telegram"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/pTelegram"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="Leader-ID"
+                    android:paddingLeft="20dp"
+                    android:paddingTop="10dp"
+                    android:paddingRight="20dp"
+                    android:paddingBottom="10dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/pLeaderID"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+
+
+    </FrameLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/extended_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:text="Редактировать"
+        app:fabSize="normal"
+        app:icon="@drawable/ic_edit" />
+
+    <ProgressBar
+        android:id="@+id/spinner_pr"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="79dp"
+        android:layout_height="81dp"
+        android:layout_gravity="center_horizontal|center_vertical"
+        android:visibility="visible"
+        app:layout_anchorGravity="center" />
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

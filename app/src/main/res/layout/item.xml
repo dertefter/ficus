@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/CardItem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:padding="3dp"
+    app:cardCornerRadius="15dp"
+    app:cardUseCompatPadding="true"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    style="?attr/materialCardViewFilledStyle">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/round_corners"
+            android:padding="5dp"
+            android:textColor="@color/md_theme_light_onError"
+            android:textSelectHandleRight="@drawable/round_corners"
+            android:textSize="16sp" />
+
+        <TextView
+
+            android:id="@+id/lesson"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:paddingStart="8dp"
+            android:textSize="20sp" />
+
+        <TextView
+
+            android:id="@+id/aud"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:paddingStart="8dp"
+            android:textAllCaps="false"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+
+</com.google.android.material.card.MaterialCardView>

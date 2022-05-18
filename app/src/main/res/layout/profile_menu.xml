@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Work"
+    tools:ignore="SpeakableTextPresentCheck">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/profile_data_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="14dp"
+            android:background="@drawable/round_corners"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:foregroundTintMode="src_in"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:soundEffectsEnabled="true">
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:textColor="?attr/colorOnPrimary"
+                android:textSize="24sp" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="6dp" />
+
+            <TextView
+                android:textColor="?attr/colorOnPrimary"
+                android:layout_width="335dp"
+                android:layout_height="27dp"
+                android:clickable="false"
+                android:gravity="center_vertical"
+                android:minHeight="48dp"
+                android:text="личные данные"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="5dp"
+                tools:ignore="TouchTargetSizeCheck">
+
+                <ImageView
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_baseline_star_24"
+                    app:tint="?attr/colorOnBackground" />
+
+                <Space
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="324dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Достижения"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/wifi_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="5dp"
+                tools:ignore="TouchTargetSizeCheck">
+
+                <ImageView
+                    app:tint="?attr/colorOnBackground"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_baseline_wifi_24" />
+
+                <Space
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="324dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Wi-Fi НГТУ"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="5dp"
+                tools:ignore="TouchTargetSizeCheck">
+
+                <ImageView
+                    app:tint="?attr/colorOnBackground"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_baseline_ondemand_video_24" />
+
+                <Space
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="324dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="DiSpace"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="5dp"
+                tools:ignore="TouchTargetSizeCheck">
+
+                <ImageView
+                    app:tint="?attr/colorOnBackground"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_baseline_contact_page_24" />
+
+                <Space
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="324dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Документы"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="5dp"
+                tools:ignore="TouchTargetSizeCheck">
+
+                <ImageView
+                    app:tint="?attr/colorOnBackground"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_baseline_self_improvement_24" />
+
+                <Space
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="324dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Запись на физкультуру"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="5dp"
+                tools:ignore="TouchTargetSizeCheck">
+
+                <ImageView
+                    app:tint="?attr/colorOnBackground"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_projector_screen_outline" />
+
+                <Space
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="324dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Проектная деятельность"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="5dp"
+                tools:ignore="TouchTargetSizeCheck">
+
+                <ImageView
+                    app:tint="?attr/colorOnBackground"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_baseline_attach_money_24" />
+
+                <Space
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="324dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Оплата услуг"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="5dp"
+                tools:ignore="TouchTargetSizeCheck">
+
+                <ImageView
+                    app:tint="?attr/colorOnBackground"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_baseline_work_24" />
+
+                <Space
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="324dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Трудоустройство"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="5dp"
+                tools:ignore="TouchTargetSizeCheck">
+
+                <ImageView
+                    app:tint="?attr/colorOnBackground"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_baseline_wysiwyg_24" />
+
+                <Space
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="324dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Бюро пропусков"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:orientation="horizontal"
+                android:paddingLeft="20dp"
+                android:paddingTop="5dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="5dp"
+                tools:ignore="TouchTargetSizeCheck">
+
+                <ImageView
+                    app:tint="?attr/colorOnBackground"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_weight="1"
+                    app:srcCompat="@drawable/ic_needle" />
+
+                <Space
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="324dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="Вакцинация от COVID-19"
+                    android:textSize="20sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:text="Следите за новостями!"
+                    android:textSize="16sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:paddingLeft="80dp"
+                    android:paddingRight="80dp">
+
+                    <ImageButton
+                        app:tint="?attr/colorOnBackground"
+                        android:id="@+id/vk"
+                        android:layout_width="69dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:scaleX="1"
+                        android:scaleY="1"
+                        app:srcCompat="@drawable/ic_vk_svgrepo_com"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <ImageButton
+                        app:tint="?attr/colorOnBackground"
+                        android:id="@+id/tg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:scaleX="0.81"
+                        android:scaleY="0.81"
+                        app:srcCompat="@drawable/ic_telegram_svgrepo_com"
+                        tools:ignore="SpeakableTextPresentCheck" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</ScrollView>

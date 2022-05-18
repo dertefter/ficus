@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
+    android:id="@+id/timetable_fragment"
+    tools:context=".Work">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar_shedule"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:minHeight="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/toolbar_timetable_menu"
+        app:title="Расписание занятий" />
+
+    <ProgressBar
+        android:id="@+id/spinner"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="79dp"
+        android:layout_height="81dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/timetable_scrollview"
+        app:layout_constraintEnd_toEndOf="@+id/timetable_scrollview"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_shedule" />
+
+    <ScrollView
+        android:id="@+id/timetable_scrollview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_shedule"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <LinearLayout
+            android:id="@+id/linerarTimetable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" />
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
