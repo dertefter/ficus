@@ -29,6 +29,8 @@ interface APIService {
     @POST(".")
     suspend fun postForm(@FieldMap params: HashMap<String?, String?>): Response<ResponseBody>
 
+    @GET("mess_teacher")
+    suspend fun messages(@Query("year") year: String?): Response<ResponseBody>
 
     @GET("schedule")
     suspend fun timetable(@Query("group") group: String?): Response<ResponseBody>
