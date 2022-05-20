@@ -23,9 +23,10 @@
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="8dp"
             android:background="@drawable/round_corners"
-            android:padding="5dp"
             android:textColor="@color/md_theme_light_onError"
             android:textSelectHandleRight="@drawable/round_corners"
             android:textSize="16sp" />
@@ -35,8 +36,8 @@
             android:id="@+id/lesson"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:paddingStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:textSize="20sp" />
 
         <TextView
@@ -45,7 +46,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
-            android:paddingStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:textAllCaps="false"
             android:textSize="16sp" />
     </LinearLayout>

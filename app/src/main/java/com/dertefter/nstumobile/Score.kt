@@ -1,18 +1,13 @@
 package com.dertefter.nstumobile
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.provider.DocumentsContract
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toolbar
 import androidx.fragment.app.Fragment
-import com.example.myapplication.APIService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,9 +21,11 @@ import retrofit2.Retrofit
 
 class Score : Fragment(R.layout.fragment_score) {
     var toolbar: Toolbar? = null
-
+    var scoreView: LinearLayout? = null
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val mInflater = LayoutInflater.from(activity)
+        scoreView = view.findViewById(R.id.score_view)
                 val client = OkHttpClient().newBuilder()
             .addInterceptor(Interceptor { chain: Interceptor.Chain ->
                 val original: Request = chain.request()
@@ -51,9 +48,30 @@ class Score : Fragment(R.layout.fragment_score) {
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     val pretty = response.body()?.string().toString()
-                    //Log.e("pretty-score", pretty)
                     val doc: Document = Jsoup.parse(pretty)
-                    val s = doc.body().select("div.sysContentWithMenu").toString()
+                    val s = doc.body().select("div.sysContentWithMenu")
+                    var tables = s.select("table.tdall")
+                    var count = 0
+                    var size = tables.size
+                    for (i in 1..size - 1){
+                        count++
+                        var table_count_textView: TextView = TextView(Work.applicationContext())
+                        table_count_textView.text = "$count семестр"
+                        scoreView?.addView(table_count_textView)
+                        var trs = tables[i].select("tr.last_progress")
+                        for (j in trs){
+                            var item: View = mInflater.inflate(R.layout.score_item, null, false)
+                            item.findViewById<TextView>(R.id.subject).text = j.select("td")[1].ownText().toString()
+                            item.findViewById<TextView>(R.id.date_subject).text = j.select("td")[2].ownText().toString()
+                            item.findViewById<TextView>(R.id.score_count).text = j.select("td")[3].select("span").first().ownText().toString()
+                            item.findViewById<TextView>(R.id.score_5).text = j.select("td")[4].select("span").first().ownText().toString()
+                            item.findViewById<TextView>(R.id.score_5).text = j.select("td")[5].select("span").first().ownText().toString()
+                            scoreView?.addView(item)
+                        }
+
+
+                    }
+
 
                 } else {
 

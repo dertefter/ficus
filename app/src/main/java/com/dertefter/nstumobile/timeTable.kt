@@ -1,9 +1,7 @@
 package com.dertefter.nstumobile
 
 import AppPreferences
-import android.content.ContentValues.TAG
 import android.content.Context
-import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
@@ -17,7 +15,6 @@ import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
-import com.example.myapplication.APIService
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

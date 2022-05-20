@@ -1,46 +1,27 @@
 package com.dertefter.nstumobile
 
 import AppPreferences
-import android.app.Application
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.util.Log
-import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
-import androidx.core.widget.doOnTextChanged
-import com.example.myapplication.APIService
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.internal.ContextUtils.getActivity
-import com.google.android.material.snackbar.Snackbar
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonParser
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.NonCancellable.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import okhttp3.Interceptor
-import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
-import okhttp3.ResponseBody
 import org.json.JSONObject
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import retrofit2.HttpException
-import retrofit2.Response
 import retrofit2.Retrofit
-import retrofit2.http.Headers
 import java.io.IOException
 import java.lang.Exception
-import java.lang.NullPointerException
 
 class AuthException(): Exception("Auth Error")
 

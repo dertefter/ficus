@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.dertefter.nstumobile
 
 import okhttp3.Cookie
 import okhttp3.RequestBody

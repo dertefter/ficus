@@ -31,9 +31,14 @@
         tools:ignore="SpeakableTextPresentCheck">
 
         <LinearLayout
+            android:id="@+id/score_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            android:adjustViewBounds="true"
+            android:divider="@drawable/line"
+            android:dividerPadding="3dp"
+            android:orientation="vertical"
+            android:showDividers="beginning|middle|end" />
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
