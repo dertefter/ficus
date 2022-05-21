@@ -18,7 +18,9 @@ class Login : AppCompatActivity() {
     var signInButton: Button? = null
     private var loginText: String = ""
     private var passwordText: String = ""
-
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

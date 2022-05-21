@@ -9,7 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 class NetworkErrorActivity : AppCompatActivity() {
     var retry_button: Button? = null
     var log_out: Button? = null
-
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
     fun logOut()
     {
         AppPreferences.name = null

@@ -29,6 +29,11 @@ class profileMenu : Fragment(R.layout.profile_menu) {
     var vk: ImageButton? = null
     var tg: ImageButton? = null
 
+    fun editProfile(){
+        val profiledataIntent = Intent(Auth.applicationContext(), ProfileData::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        Auth.applicationContext().startActivity(profiledataIntent)
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -49,8 +54,7 @@ class profileMenu : Fragment(R.layout.profile_menu) {
 
 
         profileDataButton?.setOnClickListener {
-            val profiledataIntent = Intent(Auth.applicationContext(), ProfileData::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            Auth.applicationContext().startActivity(profiledataIntent)
+            editProfile()
 
         }
 

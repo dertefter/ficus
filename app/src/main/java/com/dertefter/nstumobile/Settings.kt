@@ -20,7 +20,10 @@ class Settings : AppCompatActivity() {
             return instance!!.applicationContext
         }
     }
+    override fun onBackPressed() {
+        super.onBackPressed()
 
+    }
     fun logOut()
     {
         AppPreferences.name = null

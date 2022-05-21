@@ -1,13 +1,17 @@
 package com.dertefter.nstumobile
 
+import AppPreferences
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
-import com.google.android.material.snackbar.Snackbar
+import androidx.appcompat.app.AppCompatActivity
+import org.vosk.Model
+import org.vosk.android.StorageService
 import java.io.IOException
+import java.util.*
 
 class Auth : AppCompatActivity() {
     init {
@@ -22,9 +26,23 @@ class Auth : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        super.onBackPressed()
+    }
+
+    private var model: Model? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
+
+        val locale = Locale("ru")
+        Locale.setDefault(locale)
+        val config: Configuration = baseContext.resources.configuration
+        config.locale = locale
+        baseContext.resources.updateConfiguration(
+            config,
+            baseContext.resources.displayMetrics
+        )
 
         AppPreferences.setup(Auth.applicationContext())
         if (AppPreferences.name != null)
@@ -48,5 +66,18 @@ class Auth : AppCompatActivity() {
             startActivity(intent_login)
         }
 
+    }
+
+    private fun initModel() {
+        StorageService.unpack(
+            Work.applicationContext(), "model-ru", "model",
+            { model: Model? ->
+                this.model = model
+            }
+        ) { exception: IOException ->
+            Log.e(
+                "Failed to unpack the model", exception.message.toString()
+            )
+        }
     }
 }

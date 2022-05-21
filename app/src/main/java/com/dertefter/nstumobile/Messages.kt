@@ -51,14 +51,16 @@ class Messages : Fragment(R.layout.messages_fragment) {
                     val doc: Document = Jsoup.parse(pretty)
                     val s = doc.body().select("div.sysContentWithMenu")
                     val tbody = s.select("tbody").first()
-                    val messages = tbody.select("tr")
-                    for (i in messages){
-                        var message_item: View = mInflater.inflate(R.layout.message, null, false)
-                        message_item.findViewById<TextView>(R.id.send_by).text = i.select("span")[0].text().toString().replace("(преподаватель)", "")
-                        message_item.findViewById<TextView>(R.id.message_text).text = i.select("div").text().toString()
-                        message_item.findViewById<ImageView>(R.id.send_by_image).setImageResource(R.drawable.ic_avatar)
-                        messagesView?.addView(message_item)
+                    val messages = tbody?.select("tr")
+                    if (messages != null) {
+                        for (i in messages){
+                            var message_item: View = mInflater.inflate(R.layout.message, null, false)
+                            message_item.findViewById<TextView>(R.id.send_by).text = i.select("span")[0].text().toString().replace("(преподаватель)", "")
+                            message_item.findViewById<TextView>(R.id.message_text).text = i.select("div").text().toString()
+                            message_item.findViewById<ImageView>(R.id.send_by_image).setImageResource(R.drawable.ic_avatar)
+                            messagesView?.addView(message_item)
 
+                        }
                     }
 
                 } else {
