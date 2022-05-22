@@ -21,6 +21,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.vosk.LibVosk
@@ -56,13 +57,12 @@ class Work : AppCompatActivity(), RecognitionListener {
     var yavaButton: FloatingActionButton? = null
     var yavaBox: FrameLayout? = null
     var bnav: BottomNavigationView? = null
-
+    var yavaListenButton: LottieAnimationView? = null
     /* Used to handle permission request */
     private val PERMISSIONS_REQUEST_RECORD_AUDIO = 1
 
     private var model: Model? = null
     private var speechService: SpeechService? = null
-    private val speechStreamService: SpeechStreamService? = null
     private var ResultSpeech: TextView? = null
 
     var listenedString: String = ""
@@ -73,13 +73,16 @@ class Work : AppCompatActivity(), RecognitionListener {
     var acceptSound: Int? = null
     override fun onBackPressed() {
         super.onBackPressed()
-        hideYava()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_work)
         AppPreferences.setup(applicationContext())
+        yavaListenButton = findViewById(R.id.yava_listen_button)
+        yavaListenButton?.setOnClickListener{
+            inboxListen()
+        }
         yavaButton?.visibility = View.INVISIBLE
         listenSound = soundPool.load(applicationContext(), R.raw.listen, 1)
         cancelSound = soundPool.load(applicationContext(), R.raw.cancel, 1)
@@ -110,13 +113,10 @@ class Work : AppCompatActivity(), RecognitionListener {
         ResultSpeech = findViewById(R.id.yava_listened_inbox)
 
         yavaButton?.setOnClickListener{
-            showYava()
-            soundPool.play(listenSound!!, .5f, .5f, 0, 0, 1f)
-            recognizeMicrophone()
+            show()
         }
         closeYavaButton?.setOnClickListener {
-            hideYava()
-            soundPool.play(cancelSound!!, .5f, .5f, 0, 0, 1f)
+            hide()
 
         }
 
@@ -173,7 +173,6 @@ class Work : AppCompatActivity(), RecognitionListener {
     private fun hideFragment(fragment: Fragment) = supportFragmentManager.beginTransaction().apply {
         hide(fragment)
         commit()
-        ResultSpeech?.text = "Слушаю..."
     }
 
     private fun setCurrentFragment(fragment: Fragment) = supportFragmentManager.beginTransaction().apply {
@@ -185,33 +184,6 @@ class Work : AppCompatActivity(), RecognitionListener {
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
         super.onSaveInstanceState(outState, outPersistentState)
         outState.putBoolean("update", false)
-
-    }
-
-    @SuppressLint("ObjectAnimatorBinding")
-    fun showYava(){
-        bnav?.visibility = View.INVISIBLE
-        yavaButton?.visibility = View.INVISIBLE
-        yavaBox?.visibility = View.VISIBLE
-        ObjectAnimator.ofFloat(yavaBox, "translationY", 0f).apply {
-            duration = 200
-            start()
-        }
-    }
-
-    @SuppressLint("ObjectAnimatorBinding")
-    fun hideYava(){
-        ObjectAnimator.ofFloat(yavaBox, "translationY", 350f).apply {
-            duration = 30
-            start()
-        }
-
-        bnav?.visibility = View.VISIBLE
-        yavaButton?.visibility = View.VISIBLE
-
-        ResultSpeech?.text = "Слушаю..."
-        speechService?.cancel()
-        yavaBox?.visibility = View.INVISIBLE
 
     }
 
@@ -274,30 +246,22 @@ class Work : AppCompatActivity(), RecognitionListener {
                     .replace("text :", "")
             resultString = decoded.replace("   ", "")
             ResultSpeech?.text = resultString
-            if (speechService != null) {
-                speechService?.stop()
-                speechService = null
-            }
+            YavaAI(resultString)
         }
     }
 
     override fun onFinalResult(hypothesis: String?) {
         if (hypothesis != null) {
-            if (speechService != null) {
-                speechService?.stop()
-                speechService = null
-            }
-
-            YavaAI(resultString)
+            cancel()
         }
     }
 
     override fun onError(exception: Exception?) {
-        hideYava()
+        cancel()
     }
 
     override fun onTimeout() {
-        hideYava()
+        YavaAI("args")
     }
 
     override fun onRequestPermissionsResult(
@@ -350,22 +314,67 @@ class Work : AppCompatActivity(), RecognitionListener {
         }
     }
 
+    fun listen(){
+        yavaListenButton?.frame = 13
+        yavaListenButton?.speed = 2f
+        ResultSpeech?.text = "Слушаю..."
+        soundPool.play(listenSound!!, .5f, .5f, 0, 0, 1f)
+        recognizeMicrophone()
+    }
+    fun inboxListen(){
+        if (speechService != null){
+            cancel()
+            soundPool.play(cancelSound!!, .5f, .5f, 0, 0, 1f)
+        } else {
+            listen()
+        }
+    }
+    fun cancel(){
+        yavaListenButton?.frame = 13
+        yavaListenButton?.speed = 0f
+        ResultSpeech?.text = "Нажмите, чтобы говорить"
+        speechService?.cancel()
+        speechService = null
+    }
+    fun show(){
+        bnav?.visibility = View.INVISIBLE
+        yavaButton?.visibility = View.INVISIBLE
+        yavaBox?.visibility = View.VISIBLE
+        ObjectAnimator.ofFloat(yavaBox, "translationY", 0f).apply {
+            duration = 200
+            start()
+        }
+        listen()
+    }
+    fun hide(){
+        ObjectAnimator.ofFloat(yavaBox, "translationY", 350f).apply {
+            duration = 30
+            start()
+        }
+        bnav?.visibility = View.VISIBLE
+        yavaButton?.visibility = View.VISIBLE
+        yavaBox?.visibility = View.INVISIBLE
+        cancel()
+        soundPool.play(cancelSound!!, .5f, .5f, 0, 0, 1f)
+    }
+    fun accept(){
+        hide()
+        soundPool.play(acceptSound!!, .5f, .5f, 0, 0, 1f)
+    }
+
 
     fun YavaAI(inputData: String){
         if (inputData.contains("зачёт") or inputData.contains("успеваемость")){
             bnav?.selectedItemId = R.id.score_nav
-            hideYava()
-            soundPool.play(acceptSound!!, .5f, .5f, 0, 0, 1f)
+            accept()
         }
         if (inputData.contains("почт") or inputData.contains("сообщ")){
             bnav?.selectedItemId = R.id.messages_nav
-            hideYava()
-            soundPool.play(acceptSound!!, .5f, .5f, 0, 0, 1f)
+            accept()
         }
         if (inputData.contains("профиль") or inputData.contains("акк")){
             bnav?.selectedItemId = R.id.profile_nav
-            hideYava()
-            soundPool.play(acceptSound!!, .5f, .5f, 0, 0, 1f)
+            accept()
         }
         if (inputData.contains("редакт") or inputData.contains("личные")){
             if (bnav?.selectedItemId == R.id.profile_nav){
@@ -373,15 +382,13 @@ class Work : AppCompatActivity(), RecognitionListener {
                     Intent.FLAG_ACTIVITY_NEW_TASK)
                 Auth.applicationContext().startActivity(profiledataIntent)
             }
-            hideYava()
-            soundPool.play(acceptSound!!, .5f, .5f, 0, 0, 1f)
+            accept()
         }
 
         if (inputData.contains("вай фай") or inputData.contains("вай-фай")){
             val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("http://wifi.nstu.ru/"))
             startActivity(browserIntent)
-            hideYava()
-            soundPool.play(acceptSound!!, 0.5f, .5f, 0, 0, 1f)
+            accept()
         }
 
 
@@ -395,8 +402,7 @@ class Work : AppCompatActivity(), RecognitionListener {
                 bnav?.selectedItemId = R.id.timetable_nav
                 (supportFragmentManager.fragments.get(0) as timeTable).lessons()
             }
-            hideYava()
-            soundPool.play(acceptSound!!, .5f, .5f, 0, 0, 1f)
+            accept()
         }
     }
 

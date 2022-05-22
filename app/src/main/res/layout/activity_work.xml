@@ -58,6 +58,8 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.airbnb.lottie.LottieAnimationView
+            android:clickable="true"
+            android:id="@+id/yava_listen_button"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="bottom|center"
@@ -70,7 +72,8 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/yava_button_animation"
-            app:lottie_speed="2.6" />
+            app:lottie_speed="2"
+            android:focusable="true" />
 
         <ImageButton
             android:id="@+id/closeYava"
