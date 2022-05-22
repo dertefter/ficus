@@ -25,10 +25,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:clickable="true"
+        android:translationX="100dp"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="@+id/flFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_keyboard_voice_24"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck">
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
@@ -46,11 +50,27 @@
         android:id="@+id/yava_box"
         android:layout_width="0dp"
         android:layout_height="300dp"
-        android:background="?attr/colorSecondaryContainer"
+        android:background="@drawable/round_corners_yava"
+        android:translationY="350dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="bottom|center"
+            android:outlineProvider="background"
+            android:scaleX="1"
+            android:scaleY="1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/yava_button_animation"
+            app:lottie_speed="2.6" />
 
         <ImageButton
             android:id="@+id/closeYava"
@@ -58,17 +78,19 @@
             android:layout_height="60dp"
             android:layout_gravity="right|top|end"
             android:background="@null"
-            app:tint="?attr/colorOnSecondaryContainer"
             app:srcCompat="@drawable/ic_baseline_close_24"
+            app:tint="?attr/colorOnSecondaryContainer"
             tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         <TextView
             android:id="@+id/yava_listened_inbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="?attr/colorOnSecondaryContainer"
             android:layout_gravity="center"
+            android:gravity="center"
             android:text="Слушаю..."
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textColor="?attr/colorOnSecondaryContainer"
             android:textSize="24sp" />
     </FrameLayout>
 

@@ -2,6 +2,8 @@ package com.dertefter.nstumobile
 
 import AppPreferences
 import android.Manifest
+import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -109,12 +111,13 @@ class Work : AppCompatActivity(), RecognitionListener {
 
         yavaButton?.setOnClickListener{
             showYava()
-            recognizeMicrophone()
             soundPool.play(listenSound!!, .5f, .5f, 0, 0, 1f)
+            recognizeMicrophone()
         }
         closeYavaButton?.setOnClickListener {
-            soundPool.play(cancelSound!!, .5f, .5f, 0, 0, 1f)
             hideYava()
+            soundPool.play(cancelSound!!, .5f, .5f, 0, 0, 1f)
+
         }
 
 
@@ -185,18 +188,30 @@ class Work : AppCompatActivity(), RecognitionListener {
 
     }
 
+    @SuppressLint("ObjectAnimatorBinding")
     fun showYava(){
         bnav?.visibility = View.INVISIBLE
         yavaButton?.visibility = View.INVISIBLE
         yavaBox?.visibility = View.VISIBLE
+        ObjectAnimator.ofFloat(yavaBox, "translationY", 0f).apply {
+            duration = 200
+            start()
+        }
     }
 
+    @SuppressLint("ObjectAnimatorBinding")
     fun hideYava(){
+        ObjectAnimator.ofFloat(yavaBox, "translationY", 350f).apply {
+            duration = 30
+            start()
+        }
+
         bnav?.visibility = View.VISIBLE
         yavaButton?.visibility = View.VISIBLE
-        yavaBox?.visibility = View.INVISIBLE
+
         ResultSpeech?.text = "Слушаю..."
         speechService?.cancel()
+        yavaBox?.visibility = View.INVISIBLE
 
     }
 
@@ -246,7 +261,7 @@ class Work : AppCompatActivity(), RecognitionListener {
         if (hypothesis != null) {
             var decoded = hypothesis.replace("\n", "").replace("{", "").replace("}", "").replace("\"", "").replace("partial :", "")
             if (decoded.length != 3){
-                listenedString = decoded
+                listenedString = decoded.replace("   ", "")
                 ResultSpeech?.text = listenedString
             }
         }
@@ -257,7 +272,7 @@ class Work : AppCompatActivity(), RecognitionListener {
             var decoded =
                 hypothesis.replace("\n", "").replace("{", "").replace("}", "").replace("\"", "")
                     .replace("text :", "")
-            resultString = decoded
+            resultString = decoded.replace("   ", "")
             ResultSpeech?.text = resultString
             if (speechService != null) {
                 speechService?.stop()
@@ -306,6 +321,10 @@ class Work : AppCompatActivity(), RecognitionListener {
             Companion.applicationContext(), "model-ru", "model",
             { model: Model? ->
                 this.model = model
+                ObjectAnimator.ofFloat(yavaButton, "translationX", 0f).apply {
+                    duration = 200
+                    start()
+                }
                 yavaButton?.visibility = View.VISIBLE
             }
         ) { exception: IOException ->

@@ -34,16 +34,6 @@ class Auth : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
-
-        val locale = Locale("ru")
-        Locale.setDefault(locale)
-        val config: Configuration = baseContext.resources.configuration
-        config.locale = locale
-        baseContext.resources.updateConfiguration(
-            config,
-            baseContext.resources.displayMetrics
-        )
-
         AppPreferences.setup(Auth.applicationContext())
         if (AppPreferences.name != null)
         {
@@ -66,18 +56,5 @@ class Auth : AppCompatActivity() {
             startActivity(intent_login)
         }
 
-    }
-
-    private fun initModel() {
-        StorageService.unpack(
-            Work.applicationContext(), "model-ru", "model",
-            { model: Model? ->
-                this.model = model
-            }
-        ) { exception: IOException ->
-            Log.e(
-                "Failed to unpack the model", exception.message.toString()
-            )
-        }
     }
 }
