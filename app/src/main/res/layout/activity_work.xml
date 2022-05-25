@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
+    android:fitsSystemWindows="false"
     tools:context=".Work">
 
     <FrameLayout
         android:id="@+id/flFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fitsSystemWindows="true"
+        android:fitsSystemWindows="false"
         app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
     </FrameLayout>
 
@@ -30,8 +30,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/flFragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_baseline_keyboard_voice_24"
-        tools:ignore="SpeakableTextPresentCheck">
-    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+        tools:ignore="SpeakableTextPresentCheck"></com.google.android.material.floatingactionbutton.FloatingActionButton>
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -58,11 +57,12 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.airbnb.lottie.LottieAnimationView
-            android:clickable="true"
             android:id="@+id/yava_listen_button"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:layout_gravity="bottom|center"
+            android:clickable="true"
+            android:focusable="true"
             android:outlineProvider="background"
             android:scaleX="1"
             android:scaleY="1"
@@ -72,8 +72,7 @@
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
             app:lottie_rawRes="@raw/yava_button_animation"
-            app:lottie_speed="2"
-            android:focusable="true" />
+            app:lottie_speed="2" />
 
         <ImageButton
             android:id="@+id/closeYava"

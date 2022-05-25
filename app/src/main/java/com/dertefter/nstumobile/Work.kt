@@ -116,8 +116,10 @@ class Work : AppCompatActivity(), RecognitionListener {
             show()
         }
         closeYavaButton?.setOnClickListener {
-            hide()
 
+            if (speechService != null)
+                soundPool.play(cancelSound!!, .5f, .5f, 0, 0, 1f)
+            hide()
         }
 
 
@@ -233,8 +235,9 @@ class Work : AppCompatActivity(), RecognitionListener {
         if (hypothesis != null) {
             var decoded = hypothesis.replace("\n", "").replace("{", "").replace("}", "").replace("\"", "").replace("partial :", "")
             if (decoded.length != 3){
-                listenedString = decoded.replace("   ", "")
+                listenedString = decoded.replace("   ", "").replace("описание", "расписание").replace("сессию", "сессии")
                 ResultSpeech?.text = listenedString
+                yavaListenButton?.speed = 4f
             }
         }
     }
@@ -355,7 +358,6 @@ class Work : AppCompatActivity(), RecognitionListener {
         yavaButton?.visibility = View.VISIBLE
         yavaBox?.visibility = View.INVISIBLE
         cancel()
-        soundPool.play(cancelSound!!, .5f, .5f, 0, 0, 1f)
     }
     fun accept(){
         hide()

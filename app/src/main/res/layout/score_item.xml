@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/score_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:divider="@drawable/line"
-
-    android:dividerPadding="3dp"
-    android:orientation="vertical">
+    android:layout_margin="10dp"
+    android:padding="20dp"
+    style="?attr/materialCardViewFilledStyle"
+    app:cardCornerRadius="10dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="horizontal"
         android:showDividers="middle">
@@ -19,34 +20,44 @@
             android:id="@+id/subject"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
+            android:layout_margin="3dp"
             android:layout_weight="1"
-            android:maxLines="4"
+            android:gravity="center|left"
+            android:maxLines="6"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/date_subject"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/score_count"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/score_5"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:gravity="center" />
 
         <TextView
             android:id="@+id/ects"
-            android:layout_width="wrap_content"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_margin="3dp"
+            android:layout_weight="1"
+            android:gravity="center" />
 
     </LinearLayout>
 
-</LinearLayout>
+</androidx.cardview.widget.CardView>

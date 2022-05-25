@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.Toolbar
+import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,7 +32,7 @@ import java.util.*
 class timeTable : Fragment(R.layout.timetable_fragment) {
     var toolbar: Toolbar? = null
     var lineartimeTable: LinearLayout? = null
-    var timeTableScrollView: ScrollView? = null
+    var timeTableScrollView: NestedScrollView? = null
     var calendar: Calendar = Calendar.getInstance()
     var isSessia: Boolean = false
     var spinnerBar: ProgressBar? = null

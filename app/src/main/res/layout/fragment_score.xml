@@ -34,11 +34,7 @@
             android:id="@+id/score_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:divider="@drawable/line"
-            android:dividerPadding="3dp"
-            android:orientation="vertical"
-            android:showDividers="beginning|middle|end" />
+            android:orientation="vertical" />
     </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

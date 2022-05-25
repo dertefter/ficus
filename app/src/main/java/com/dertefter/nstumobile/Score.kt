@@ -1,12 +1,19 @@
 package com.dertefter.nstumobile
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toolbar
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
+import androidx.cardview.widget.CardView
+import androidx.core.view.marginBottom
+import androidx.core.view.marginTop
 import androidx.fragment.app.Fragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,6 +29,17 @@ import retrofit2.Retrofit
 class Score : Fragment(R.layout.fragment_score) {
     var toolbar: Toolbar? = null
     var scoreView: LinearLayout? = null
+
+    @ColorInt
+    fun Context.getColorFromAttr(
+        @AttrRes attrColor: Int,
+        typedValue: TypedValue = TypedValue(),
+        resolveRefs: Boolean = true
+    ): Int {
+        theme.resolveAttribute(attrColor, typedValue, resolveRefs)
+        return typedValue.data
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val mInflater = LayoutInflater.from(activity)
@@ -55,19 +73,32 @@ class Score : Fragment(R.layout.fragment_score) {
                     var size = tables.size
                     for (i in 1..size - 1){
                         count++
-                        var table_count_textView: TextView = TextView(Work.applicationContext())
+                        var table_count_textView: TextView = TextView(Auth.applicationContext())
                         table_count_textView.text = "$count семестр"
-                        scoreView?.addView(table_count_textView)
-                        var trs = tables[i].select("tr.last_progress")
+                        table_count_textView.setTextColor(context?.getColorFromAttr(com.google.android.material.R.attr.colorOnSurface)!!)
+                        table_count_textView.setTextSize(24f)
+                        val scoreCard: View = mInflater.inflate(R.layout.score_card, null, false)
+                        val scoreCardBody = scoreCard.findViewById<LinearLayout>(R.id.score_card_body)
+                        scoreCardBody.addView(table_count_textView)
+                        val trs = tables[i].select("tr.last_progress")
+                        val item: View = mInflater.inflate(R.layout.score_item, null, false)
+                        item.findViewById<TextView>(R.id.subject).text = "Дисциплина"
+                        item.findViewById<TextView>(R.id.date_subject).text = "Дата"
+                        item.findViewById<TextView>(R.id.score_count).text = "Баллы"
+                        item.findViewById<TextView>(R.id.score_5).text = "Оценка 5-балльная"
+                        item.findViewById<TextView>(R.id.ects).text = "Оценка ECTS"
+                        scoreCardBody.addView(item)
+
                         for (j in trs){
-                            var item: View = mInflater.inflate(R.layout.score_item, null, false)
+                            val item: View = mInflater.inflate(R.layout.score_item, null, false)
                             item.findViewById<TextView>(R.id.subject).text = j.select("td")[1].ownText().toString()
                             item.findViewById<TextView>(R.id.date_subject).text = j.select("td")[2].ownText().toString()
                             item.findViewById<TextView>(R.id.score_count).text = j.select("td")[3].select("span").first().ownText().toString()
                             item.findViewById<TextView>(R.id.score_5).text = j.select("td")[4].select("span").first().ownText().toString()
-                            item.findViewById<TextView>(R.id.score_5).text = j.select("td")[5].select("span").first().ownText().toString()
-                            scoreView?.addView(item)
+                            item.findViewById<TextView>(R.id.ects).text = j.select("td")[5].select("span").first().ownText().toString()
+                            scoreCardBody.addView(item)
                         }
+                        scoreView?.addView(scoreCard)
 
 
                     }
