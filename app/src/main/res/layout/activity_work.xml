@@ -50,6 +50,7 @@
         android:layout_width="0dp"
         android:layout_height="300dp"
         android:background="@drawable/round_corners_yava"
+        android:paddingBottom="20dp"
         android:translationY="350dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/bottomNavigationView"

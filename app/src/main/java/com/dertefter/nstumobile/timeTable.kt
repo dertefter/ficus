@@ -63,7 +63,7 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
         spinnerBar?.visibility = View.VISIBLE
         isSessia = true
         lineartimeTable?.removeAllViews()
-        var retrofit = Retrofit.Builder()
+        val retrofit = Retrofit.Builder()
             .baseUrl(link2)
             .build()
         val service = retrofit.create(APIService::class.java)

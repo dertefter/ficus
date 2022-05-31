@@ -8,6 +8,27 @@
     android:fitsSystemWindows="false"
     tools:context=".Work">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:fitsSystemWindows="false"
+        app:liftOnScroll="true">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar_shedule"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:layout_marginTop="20dp"
+            android:clipToPadding="false"
+            android:fitsSystemWindows="false"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:menu="@menu/toolbar_timetable_menu"
+            app:title="Расписание занятий" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/timetable_scrollview"
         android:layout_width="match_parent"
@@ -23,24 +44,6 @@
             android:paddingLeft="5dp"
             android:paddingRight="5dp" />
     </androidx.core.widget.NestedScrollView>
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:fitsSystemWindows="true">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar_shedule"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fitsSystemWindows="true"
-            android:minHeight="?attr/actionBarSize"
-            app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:menu="@menu/toolbar_timetable_menu"
-            app:title="Расписание занятий" />
-
-    </com.google.android.material.appbar.AppBarLayout>
 
 
     <ProgressBar

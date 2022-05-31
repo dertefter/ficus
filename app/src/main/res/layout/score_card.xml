@@ -5,9 +5,8 @@
     style="?attr/materialCardViewFilledStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="20dp"
-    android:padding="3dp"
-    app:cardCornerRadius="15dp"
+    app:cardCornerRadius="20dp"
+    app:cardUseCompatPadding="true"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
 
@@ -15,10 +14,13 @@
         android:id="@+id/score_card_body"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="7dp"
+        android:layout_margin="10dp"
         android:divider="@drawable/emply_devider"
         android:orientation="vertical"
-        android:padding="10dp"
+        android:paddingLeft="1dp"
+        android:paddingTop="10dp"
+        android:paddingRight="1dp"
+        android:paddingBottom="10dp"
         android:showDividers="middle" />
 
 

@@ -17,9 +17,11 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import androidx.fragment.app.Fragment
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -51,7 +53,7 @@ class Work : AppCompatActivity(), RecognitionListener {
     }
 
     var soundPool = SoundPool(5, AudioManager.STREAM_MUSIC, 0)
-
+    var yavaEnable: Boolean = false
     var state: Bundle? = null
     var closeYavaButton: ImageButton? = null
     var yavaButton: FloatingActionButton? = null
@@ -71,14 +73,50 @@ class Work : AppCompatActivity(), RecognitionListener {
     var cancelSound: Int? = null
     var listenSound: Int? = null
     var acceptSound: Int? = null
+    var backPressedTime: Long = 0
     override fun onBackPressed() {
-        super.onBackPressed()
+        if (backPressedTime + 3000 > System.currentTimeMillis()) {
+            super.onBackPressed()
+            finish()
+        } else {
+            Toast.makeText(this, "Нажмите ещё раз, чтобы выйти", Toast.LENGTH_LONG).show()
+        }
+        backPressedTime = System.currentTimeMillis()
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        yavaEnable = AppPreferences.Yava == true
+        if (yavaEnable){
+            // Check if user has given permission to record audio, init the model after permission is granted
+
+            // Check if user has given permission to record audio, init the model after permission is granted
+            val permissionCheck =
+                ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.RECORD_AUDIO)
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.RECORD_AUDIO),
+                    PERMISSIONS_REQUEST_RECORD_AUDIO
+                )
+            } else {
+                initModel()
+            }
+        }else{
+            ObjectAnimator.ofFloat(yavaButton, "translationX", 200f).apply {
+                duration = 0
+                start()
+            }
+        }
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContentView(R.layout.activity_work)
         AppPreferences.setup(applicationContext())
+        yavaEnable = AppPreferences.Yava == true
         yavaListenButton = findViewById(R.id.yava_listen_button)
         yavaListenButton?.setOnClickListener{
             inboxListen()
@@ -88,20 +126,29 @@ class Work : AppCompatActivity(), RecognitionListener {
         cancelSound = soundPool.load(applicationContext(), R.raw.cancel, 1)
         acceptSound = soundPool.load(applicationContext(), R.raw.accept, 1)
         LibVosk.setLogLevel(LogLevel.INFO)
-        // Check if user has given permission to record audio, init the model after permission is granted
+        if (yavaEnable){
 
-        // Check if user has given permission to record audio, init the model after permission is granted
-        val permissionCheck =
-            ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.RECORD_AUDIO)
-        if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                this,
-                arrayOf(Manifest.permission.RECORD_AUDIO),
-                PERMISSIONS_REQUEST_RECORD_AUDIO
-            )
-        } else {
-            initModel()
+            // Check if user has given permission to record audio, init the model after permission is granted
+
+            // Check if user has given permission to record audio, init the model after permission is granted
+            val permissionCheck =
+                ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.RECORD_AUDIO)
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.RECORD_AUDIO),
+                    PERMISSIONS_REQUEST_RECORD_AUDIO
+                )
+            } else {
+                initModel()
+            }
+        }else{
+            ObjectAnimator.ofFloat(yavaButton, "translationX", 200f).apply {
+                duration = 0
+                start()
+            }
         }
+
 
 
         val timetableFragment = timeTable()
@@ -279,6 +326,27 @@ class Work : AppCompatActivity(), RecognitionListener {
                 initModel()
             } else {
                 finish()
+            }
+        }
+    }
+
+    fun YavaEnabler(value: Boolean){
+        if (value){
+            val permissionCheck =
+                ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.RECORD_AUDIO)
+            if (permissionCheck != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.RECORD_AUDIO),
+                    PERMISSIONS_REQUEST_RECORD_AUDIO
+                )
+            } else {
+                initModel()
+            }
+        }else{
+            ObjectAnimator.ofFloat(yavaButton, "translationX", 200f).apply {
+                duration = 0
+                start()
             }
         }
     }

@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/CardItem"
+    style="?attr/materialCardViewElevatedStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:padding="3dp"
-    app:cardCornerRadius="15dp"
-    app:cardUseCompatPadding="true"
-    app:layout_constraintStart_toStartOf="parent"
-    style="?attr/materialCardViewFilledStyle"
-    app:layout_constraintTop_toTopOf="parent">
+    app:cardCornerRadius="20dp"
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="5dp">
+        android:padding="6dp">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginRight="6dp"
             android:orientation="horizontal">
 
             <TextView
@@ -28,24 +27,21 @@
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/round_corners2"
-                android:padding="5dp"
                 android:textColor="@color/md_theme_light_onError"
                 android:textSelectHandleRight="@drawable/round_corners"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
 
             <TextView
 
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
                 android:background="@drawable/round_corners"
-                android:padding="5dp"
                 android:textColor="@color/md_theme_light_onError"
                 android:textSelectHandleRight="@drawable/round_corners"
-                android:textSize="16sp" />
+                android:textSize="14sp" />
         </LinearLayout>
 
         <TextView
@@ -53,18 +49,21 @@
             android:id="@+id/exam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:textSize="16sp" />
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="6dp"
+            android:textSize="18sp" />
 
         <TextView
 
             android:id="@+id/aud"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
             android:textAllCaps="false"
             android:textSize="16sp" />
     </LinearLayout>
 
 
-</androidx.cardview.widget.CardView>
+</com.google.android.material.card.MaterialCardView>

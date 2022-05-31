@@ -17,6 +17,10 @@ object AppPreferences {
         get() = Key.LOGIN.getString()
         set(value) = Key.LOGIN.setString(value)
 
+    var Yava: Boolean?
+        get() = Key.YAVA.getBoolean()
+        set(value) = Key.YAVA.setBoolean(value)
+
     var password: String?
         get() = Key.PASSWORD.getString()
         set(value) = Key.PASSWORD.setString(value)
@@ -38,7 +42,7 @@ object AppPreferences {
         set(value) = Key.FULLNAME.setString(value)
 
     private enum class Key {
-        LOGIN, PASSWORD, GROUP, TOKEN, NAME, FULLNAME; // TODO step 3: replace these cases with your stored values keys
+        LOGIN, PASSWORD, GROUP, TOKEN, NAME, FULLNAME, YAVA;
 
         fun getBoolean(): Boolean? = if (sharedPreferences!!.contains(name)) sharedPreferences!!.getBoolean(name, false) else null
         fun getFloat(): Float? = if (sharedPreferences!!.contains(name)) sharedPreferences!!.getFloat(name, 0f) else null

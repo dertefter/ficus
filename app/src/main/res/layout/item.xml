@@ -2,34 +2,29 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/CardItem"
+    style="?attr/materialCardViewElevatedStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:padding="3dp"
-    app:cardCornerRadius="15dp"
-    app:cardUseCompatPadding="true"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    style="?attr/materialCardViewFilledStyle">
+    app:cardCornerRadius="20dp"
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="5dp">
+        android:padding="6dp">
 
         <TextView
 
             android:id="@+id/time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="6dp"
             android:background="@drawable/round_corners"
-            android:textColor="@color/md_theme_light_onError"
+            android:textColor="?attr/colorOnTertiary"
             android:textSelectHandleRight="@drawable/round_corners"
-            android:textSize="16sp" />
+            android:textSize="14sp" />
 
         <TextView
 
@@ -37,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="6dp"
             android:textSize="20sp" />
 
         <TextView
@@ -47,8 +42,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="6dp"
             android:textAllCaps="false"
             android:textSize="16sp" />
     </LinearLayout>

@@ -10,6 +10,7 @@ import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.google.android.material.card.MaterialCardView
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -25,7 +26,7 @@ import retrofit2.Retrofit
 class profileMenu : Fragment(R.layout.profile_menu) {
     var nameText: TextView? = null
     var wifiButton: LinearLayout? = null
-    var profileDataButton: LinearLayout? = null
+    var profileDataButton: MaterialCardView? = null
     var vk: ImageButton? = null
     var tg: ImageButton? = null
 

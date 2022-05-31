@@ -74,7 +74,7 @@ class Score : Fragment(R.layout.fragment_score) {
                     for (i in 1..size - 1){
                         count++
                         var table_count_textView: TextView = TextView(Auth.applicationContext())
-                        table_count_textView.text = "$count семестр"
+                        table_count_textView.text = " $count семестр"
                         table_count_textView.setTextColor(context?.getColorFromAttr(com.google.android.material.R.attr.colorOnSurface)!!)
                         table_count_textView.setTextSize(24f)
                         val scoreCard: View = mInflater.inflate(R.layout.score_card, null, false)
@@ -84,9 +84,9 @@ class Score : Fragment(R.layout.fragment_score) {
                         val item: View = mInflater.inflate(R.layout.score_item, null, false)
                         item.findViewById<TextView>(R.id.subject).text = "Дисциплина"
                         item.findViewById<TextView>(R.id.date_subject).text = "Дата"
-                        item.findViewById<TextView>(R.id.score_count).text = "Баллы"
-                        item.findViewById<TextView>(R.id.score_5).text = "Оценка 5-балльная"
-                        item.findViewById<TextView>(R.id.ects).text = "Оценка ECTS"
+                        item.findViewById<TextView>(R.id.score_count).text = "Балл"
+                        item.findViewById<TextView>(R.id.score_5).text = "Оценка"
+                        item.findViewById<TextView>(R.id.ects).text = "ECTS"
                         scoreCardBody.addView(item)
 
                         for (j in trs){

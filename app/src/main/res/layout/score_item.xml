@@ -2,18 +2,19 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/score_item"
+    style="?attr/materialCardViewOutlinedStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:padding="20dp"
-    style="?attr/materialCardViewFilledStyle"
-    app:cardCornerRadius="10dp">
+    app:cardCornerRadius="20dp"
+    app:cardUseCompatPadding="false">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:divider="@drawable/empty_devider_vertical"
         android:orientation="horizontal"
+
         android:showDividers="middle">
 
         <TextView
@@ -22,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
             android:layout_weight="1"
-            android:gravity="center|left"
+            android:gravity="center"
             android:maxLines="6"
             android:textSize="16sp" />
 
@@ -32,15 +33,17 @@
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
             android:layout_weight="1"
-            android:gravity="center" />
+            android:gravity="center"
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/score_count"
-            android:layout_width="50dp"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
             android:layout_weight="1"
-            android:gravity="center" />
+            android:gravity="center"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/score_5"
@@ -48,7 +51,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
             android:layout_weight="1"
-            android:gravity="center" />
+            android:gravity="center"
+            android:textSize="14sp" />
 
         <TextView
             android:id="@+id/ects"
@@ -56,7 +60,8 @@
             android:layout_height="wrap_content"
             android:layout_margin="3dp"
             android:layout_weight="1"
-            android:gravity="center" />
+            android:gravity="center"
+            android:textSize="14sp" />
 
     </LinearLayout>
 
