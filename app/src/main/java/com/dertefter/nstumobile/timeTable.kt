@@ -14,6 +14,7 @@ import android.widget.TextView
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.Toolbar
+import androidx.core.view.children
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import kotlinx.coroutines.CoroutineScope
@@ -234,7 +235,7 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
         }
         else
         {
-            Log.e("ошибка", "неь группы")
+            Log.e("ошибка", "нет группы")
         }
 
 

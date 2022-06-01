@@ -35,11 +35,12 @@
                 app:lottie_rawRes="@raw/search" />
 
             <TextView
+                android:id="@+id/no_mes_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:gravity="center"
-                android:text="Тут ничегго нет..."
+                android:text="Тут ничего нет..."
                 android:textSize="20sp" />
         </LinearLayout>
     </FrameLayout>

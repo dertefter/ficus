@@ -27,6 +27,7 @@ class Messages : Fragment(R.layout.messages_fragment) {
     var spinner: ProgressBar? = null
     var animation: FrameLayout? = null
     var current_value = 0
+    var no_mesTextView: TextView? = null
     override fun onStart() {
         super.onStart()
         mes(current_value)
@@ -109,6 +110,7 @@ class Messages : Fragment(R.layout.messages_fragment) {
         mInflater = LayoutInflater.from(activity)
         spinner = view.findViewById(R.id.spinner_mes)
         toolbar = view.findViewById(R.id.toolbar_messages)
+        no_mesTextView = view.findViewById(R.id.no_mes_text)
         toolbar?.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.mes1 -> {
