@@ -16,6 +16,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_new_24"
+        app:navigationIconTint="?attr/colorOnPrimary"
         app:subtitleCentered="true"
         app:titleTextColor="?attr/colorOnPrimary"
         app:subtitleTextColor="?attr/colorOnPrimary"
@@ -47,9 +49,9 @@
                 android:layout_marginRight="4dp"
                 android:autoLink="all"
                 android:gravity="top|left"
+                android:lineSpacingExtra="8sp"
                 android:linksClickable="true"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                android:textSize="16sp" />
+                android:textSize="17sp" />
         </LinearLayout>
     </ScrollView>
 

@@ -39,26 +39,12 @@ class Settings : AppCompatActivity() {
         finish()
     }
 
-    var voice_switch: SwitchMaterial? = null
     var logoutButton: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.settings_screen)
         logoutButton = findViewById(R.id.logout_button)
-        voice_switch = findViewById(R.id.voice_assistant_enable)
-        if (AppPreferences.Yava == true) {
-            voice_switch?.isChecked = true
-        }
-        else{
-            voice_switch?.isChecked= false
-        }
-        voice_switch?.setOnClickListener {
-
-            AppPreferences.Yava = voice_switch?.isChecked!!
-        }
-
-
         logoutButton?.setOnClickListener {
             MaterialAlertDialogBuilder(this)
                 .setTitle("Выход")

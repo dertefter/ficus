@@ -80,6 +80,9 @@ class ReadMessageActivity : AppCompatActivity() {
         val get_send_by=intent.getStringExtra("send_by")
         toolbar?.title = get_send_by
         toolbar?.subtitle = get_theme
+        toolbar?.setNavigationOnClickListener {
+            finish()
+        }
         text?.text = get_text
         fab?.setOnClickListener{
             MaterialAlertDialogBuilder(this)
