@@ -7,14 +7,13 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.LinearLayout
-import android.widget.ProgressBar
-import android.widget.ScrollView
-import android.widget.TextView
+import android.widget.*
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.Toolbar
+import androidx.cardview.widget.CardView
 import androidx.core.view.children
+import androidx.core.view.get
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import kotlinx.coroutines.CoroutineScope
@@ -32,12 +31,19 @@ import java.util.*
 
 class timeTable : Fragment(R.layout.timetable_fragment) {
     var toolbar: Toolbar? = null
-    var lineartimeTable: LinearLayout? = null
+    var daySelection: CardView? = null
     var timeTableScrollView: NestedScrollView? = null
     var calendar: Calendar = Calendar.getInstance()
     var isSessia: Boolean = false
     var spinnerBar: ProgressBar? = null
     var gr: String? = null
+    var day: Int = 1
+    var arrowLeftButton: ImageButton? = null
+    var arrowRightButton: ImageButton? = null
+    var days: FrameLayout? = null
+    var dayView: TextView? = null
+    var exams: FrameLayout? = null
+    var spinner: ProgressBar? = null
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         if (isSessia){
@@ -59,11 +65,14 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
 
     fun sessia()
     {
+        spinner?.visibility = View.VISIBLE
+        daySelection?.visibility = View.INVISIBLE
+        days?.visibility = View.INVISIBLE
+        exams?.visibility = View.VISIBLE
         toolbar?.title = "Расписание сессии"
         val mInflater = LayoutInflater.from(activity)
-        spinnerBar?.visibility = View.VISIBLE
         isSessia = true
-        lineartimeTable?.removeAllViews()
+        (exams?.get(0) as LinearLayout).removeAllViews()
         val retrofit = Retrofit.Builder()
             .baseUrl(link2)
             .build()
@@ -72,6 +81,7 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
             val response = service.timetable(gr)
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
+                    spinner?.visibility = View.INVISIBLE
                     val pretty = response.body()?.string().toString()
                     val doc: Document = Jsoup.parse(pretty)
                     val s = doc.body().select("div.schedule__session-body")
@@ -92,8 +102,7 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
                         item.findViewById<TextView>(R.id.exam).text = exam
                         item.findViewById<TextView>(R.id.date).text = date
                         item.findViewById<TextView>(R.id.aud).text = aud + ", " + type
-                        lineartimeTable?.addView(item)
-                        spinnerBar?.visibility = View.INVISIBLE
+                        (exams?.get(0) as LinearLayout).addView(item)
                     }
 
 
@@ -108,11 +117,16 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
     }
     fun lessons()
     {
+        spinner?.visibility = View.VISIBLE
+        daySelection?.visibility = View.VISIBLE
         toolbar?.title = "Расписание занятий"
         val mInflater = LayoutInflater.from(activity)
-        spinnerBar?.visibility = View.VISIBLE
         isSessia = false
-        lineartimeTable?.removeAllViews()
+        for (i in 0..5){
+            ((days?.get(i) as FrameLayout).get(0) as LinearLayout).removeAllViews()
+        }
+        days?.visibility = View.VISIBLE
+        exams?.visibility = View.INVISIBLE
         val client = OkHttpClient().newBuilder()
             .addInterceptor(Interceptor { chain: Interceptor.Chain ->
                 val original: Request = chain.request()
@@ -135,19 +149,14 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
             val response = service.Study()
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
+                    spinner?.visibility = View.INVISIBLE
                     val pretty = response.body()?.string().toString()
                     val doc: Document = Jsoup.parse(pretty)
                     val s = doc.body().select("div.schedule__table-body").first()
                     val rows = s.select("> *")
-                    for (i in rows)
+                    for (i in 0..rows.size - 1)
                     {
-                        val day = TextView(Auth.applicationContext())
-
-                        day.setTextColor(context?.getColorFromAttr(com.google.android.material.R.attr.colorOnBackground)!!)
-                        day.textSize = 40F
-                        day.text = " " + i.getElementsByAttributeValue("data-type", "day").text().toString()
-                        val lessons = i.select("div.schedule__table-cell")[1].select("> *")
-                        lineartimeTable?.addView(day)
+                        val lessons = rows[i].select("div.schedule__table-cell")[1].select("> *")
                         for (j in lessons)
                         {
                             var item: View = mInflater.inflate(R.layout.item, null, false)
@@ -164,7 +173,8 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
                                             val aud = itemsInRow.select("div.schedule__table-class").text().toString()
                                             item.findViewById<TextView>(R.id.aud).text = aud
                                             item.findViewById<TextView>(R.id.lesson).text = lesson_text
-                                            lineartimeTable?.addView(item)
+                                            var this_day: FrameLayout = days?.get(i) as FrameLayout
+                                            (this_day.get(0) as LinearLayout).addView(item)
                                         }
                                     }
                                 }
@@ -178,7 +188,8 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
                                         item.findViewById<TextView>(R.id.aud).text = aud  + ", " + typeWork
                                         item.findViewById<TextView>(R.id.lesson).text =
                                             lesson_text
-                                        lineartimeTable?.addView(item)
+                                        var this_day: FrameLayout = days?.get(i) as FrameLayout
+                                        (this_day.get(0) as LinearLayout).addView(item)
                                     }
                                 }
                                 spinnerBar?.visibility = View.INVISIBLE
@@ -196,7 +207,8 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
                                         val aud_text = it_.select("div.schedule__table-class").text().toString()
                                         item.findViewById<TextView>(R.id.lesson).text = lesson_text
                                         item.findViewById<TextView>(R.id.aud).text = aud_text
-                                        lineartimeTable?.addView(item)
+                                        var this_day: FrameLayout = days?.get(i) as FrameLayout
+                                        (this_day.get(0) as LinearLayout).addView(item)
 
                                     }
                                 }
@@ -220,12 +232,130 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
         }
     }
 
+    fun arrowRight(){
+        if (day < 6){
+            day++
+            for (i in 0..5){
+                if (i == day - 1){
+                    days?.get(i)?.visibility = View.VISIBLE
+                } else{
+                    days?.get(i)?.visibility = View.INVISIBLE
+                }
+            }
+            if (day == 1){
+                dayView?.text = "Понедельник"
+            } else if (day == 2){
+                dayView?.text = "Вторник"
+            }else if (day == 3){
+                dayView?.text = "Среда"
+            }else if (day == 4){
+                dayView?.text = "Четверг"
+            }else if (day == 5){
+                dayView?.text = "Пятница"
+            }else if (day == 6){
+                dayView?.text = "Суббота"
+            }
+            if (day == 6){
+                arrowRightButton?.visibility = View.INVISIBLE
+            }else{
+                arrowRightButton?.visibility = View.VISIBLE
+            }
+            if (day == 1){
+                arrowLeftButton?.visibility = View.INVISIBLE
+            }else{
+                arrowLeftButton?.visibility = View.VISIBLE
+            }
+        }
+    }
+    fun arrowLeft(){
+        if (day > 1){
+            day--
+            for (i in 0..5){
+                if (i == day - 1){
+                    days?.get(i)?.visibility = View.VISIBLE
+                } else{
+                    days?.get(i)?.visibility = View.INVISIBLE
+                }
+            }
+            if (day == 1){
+                dayView?.text = "Понедельник"
+            } else if (day == 2){
+                dayView?.text = "Вторник"
+            }else if (day == 3){
+                dayView?.text = "Среда"
+            }else if (day == 4){
+                dayView?.text = "Четверг"
+            }else if (day == 5){
+                dayView?.text = "Пятница"
+            }else if (day == 6){
+                dayView?.text = "Суббота"
+            }
+            if (day == 6){
+                arrowRightButton?.visibility = View.INVISIBLE
+            }else{
+                arrowRightButton?.visibility = View.VISIBLE
+            }
+            if (day == 1){
+                arrowLeftButton?.visibility = View.INVISIBLE
+            }else{
+                arrowLeftButton?.visibility = View.VISIBLE
+            }
+        }
+    }
+
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        spinnerBar = view.findViewById(R.id.spinner)
+        spinner = view.findViewById(R.id.spinner_timetable)
+        exams = view.findViewById(R.id.exams)
+        daySelection = view.findViewById(R.id.daySelection)
+        arrowLeftButton = view.findViewById(R.id.arrowLeft)
+        arrowRightButton = view.findViewById(R.id.arrowRight)
+        dayView = view.findViewById(R.id.day_state)
+        arrowRightButton?.setOnClickListener {
+            arrowRight()
+        }
+        arrowLeftButton?.setOnClickListener {
+            arrowLeft()
+        }
+        days = view.findViewById(R.id.days)
         var today: Int = calendar.get(Calendar.DAY_OF_WEEK)
+        today -= 1
+        if (today < 1){today = 1}
+        day = today
+        for (i in 0..5){
+            if (i == day - 1){
+                days?.get(i)?.visibility = View.VISIBLE
+            } else{
+                days?.get(i)?.visibility = View.INVISIBLE
+            }
+        }
+        if (day == 6){
+            arrowRightButton?.visibility = View.INVISIBLE
+        }else{
+            arrowRightButton?.visibility = View.VISIBLE
+        }
+        if (day == 1){
+            arrowLeftButton?.visibility = View.INVISIBLE
+        }else{
+            arrowLeftButton?.visibility = View.VISIBLE
+        }
+        if (day == 1){
+            dayView?.text = "Понедельник"
+        } else if (day == 2){
+            dayView?.text = "Вторник"
+        }else if (day == 3){
+            dayView?.text = "Среда"
+        }else if (day == 4){
+            dayView?.text = "Четверг"
+        }else if (day == 5){
+            dayView?.text = "Пятница"
+        }else if (day == 6){
+            dayView?.text = "Суббота"
+        }
+
         timeTableScrollView = view.findViewById(R.id.timetable_scrollview)
-        lineartimeTable = view.findViewById(R.id.linerarTimetable)
+        //lineartimeTable = view.findViewById(R.id.linerarTimetable)
 
         toolbar = view.findViewById(R.id.toolbar_shedule)
 

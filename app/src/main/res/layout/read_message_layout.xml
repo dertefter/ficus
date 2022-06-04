@@ -4,14 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/read_message_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="false">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolbar_read_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?attr/colorPrimary"
+        android:fitsSystemWindows="false"
         android:minHeight="?attr/actionBarSize"
+        android:paddingTop="25dp"
+        android:paddingBottom="2dp"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,9 +23,9 @@
         app:navigationIcon="@drawable/ic_baseline_arrow_back_ios_new_24"
         app:navigationIconTint="?attr/colorOnPrimary"
         app:subtitleCentered="true"
-        app:titleTextColor="?attr/colorOnPrimary"
         app:subtitleTextColor="?attr/colorOnPrimary"
-        app:titleCentered="true">
+        app:titleCentered="true"
+        app:titleTextColor="?attr/colorOnPrimary">
 
     </com.google.android.material.appbar.MaterialToolbar>
 

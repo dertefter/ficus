@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -71,6 +72,7 @@ class ReadMessageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.read_message_layout)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         var messageID: String = intent.getStringExtra("mesid")!!
         toolbar = findViewById(R.id.toolbar_read_message)
         text = findViewById(R.id.read_message_text)

@@ -5,9 +5,7 @@
     android:id="@+id/auth_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTintMode="add"
-    android:fitsSystemWindows="true"
-    android:foregroundTintMode="add"
+    android:fitsSystemWindows="false"
     tools:context=".Auth">
 
     <ImageView

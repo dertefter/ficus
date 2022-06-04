@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.color.DynamicColors
 
 class Auth : AppCompatActivity() {
     init {
@@ -22,7 +23,9 @@ class Auth : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        DynamicColors.applyToActivitiesIfAvailable(this.application)
         setContentView(R.layout.activity_auth)
+
         AppPreferences.setup(Auth.applicationContext())
         if (AppPreferences.name != null)
         {

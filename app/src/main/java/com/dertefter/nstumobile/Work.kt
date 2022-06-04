@@ -1,6 +1,7 @@
 package com.dertefter.nstumobile
 
 import AppPreferences
+import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.color.DynamicColors
 
 
 class Work : AppCompatActivity() {
@@ -44,6 +46,7 @@ class Work : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
         setContentView(R.layout.activity_work)
+
         AppPreferences.setup(applicationContext())
 
         val timetableFragment = timeTable()

@@ -11,9 +11,6 @@ import android.widget.TextView
 import android.widget.Toolbar
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
-import androidx.cardview.widget.CardView
-import androidx.core.view.marginBottom
-import androidx.core.view.marginTop
 import androidx.fragment.app.Fragment
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

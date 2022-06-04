@@ -26,6 +26,7 @@
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/activity_main.xml" value="0.20742753623188406" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/activity_work.xml" value="0.144" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/fragment_day.xml" value="0.18631006346328197" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/fragment_score.xml" value="0.2" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/item.xml" value="0.4" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/item2.xml" value="0.4" />
@@ -40,8 +41,10 @@
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/read_message_layout.xml" value="0.264" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/score_card.xml" value="0.4" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/score_item.xml" value="0.4" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/score_viewpager.xml" value="0.18631006346328197" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/settings_screen.xml" value="0.4" />
-        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/timetable_fragment.xml" value="0.264" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/timetable_fragment.xml" value="0.2" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/timetable_sessia.xml" value="0.18631006346328197" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/wifi_nstu.xml" value="0.1" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/menu/bottom_bav_menu.xml" value="0.15572916666666667" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/menu/messages_menu.xml" value="0.12227447627191107" />
