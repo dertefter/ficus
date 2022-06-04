@@ -1,15 +1,12 @@
-package com.dertefter.nstumobile
+package com.dertefter.ficus
 
 import AppPreferences
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.internal.ContextUtils.getActivity
-import com.google.android.material.switchmaterial.SwitchMaterial
 
 class Settings : AppCompatActivity() {
     init {
@@ -19,16 +16,17 @@ class Settings : AppCompatActivity() {
     companion object {
         private var instance: Settings? = null
 
-        fun applicationContext() : Context {
+        fun applicationContext(): Context {
             return instance!!.applicationContext
         }
     }
+
     override fun onBackPressed() {
         super.onBackPressed()
 
     }
-    fun logOut()
-    {
+
+    fun logOut() {
         AppPreferences.name = null
         AppPreferences.group = null
         AppPreferences.fullName = null

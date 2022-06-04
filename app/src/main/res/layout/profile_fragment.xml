@@ -19,7 +19,7 @@
             android:id="@+id/toolbar_pr"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="28dp"
             android:clipToPadding="false"
             android:fitsSystemWindows="false"
             app:layout_scrollFlags="scroll|enterAlways|snap"
@@ -30,7 +30,7 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:ignore="SpeakableTextPresentCheck">
 

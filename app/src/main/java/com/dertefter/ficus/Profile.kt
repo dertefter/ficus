@@ -1,4 +1,4 @@
-package com.dertefter.nstumobile
+package com.dertefter.ficus
 
 import android.content.Intent
 import android.os.Bundle

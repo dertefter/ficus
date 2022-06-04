@@ -8,38 +8,35 @@
     android:fitsSystemWindows="false"
     tools:context=".Auth">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="108dp"
-        android:layout_height="120dp"
-        android:clickable="false"
-        android:tintMode="src_atop"
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="280dp"
+        android:layout_height="270dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo"
-        app:tint="?attr/colorOnBackground" />
+        app:lottie_autoPlay="true"
+        app:lottie_loop="false"
+        app:lottie_rawRes="@raw/ficus"
+        app:lottie_speed="0.9" />
 
     <TextView
-        android:id="@+id/name_auth"
+        android:id="@+id/auth_text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:textColor="?attr/colorOnBackground"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="44dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center_vertical"
+        android:text="Подключаемся к НГТУ"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_auth" />
+        app:layout_gravity="center_vertical" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

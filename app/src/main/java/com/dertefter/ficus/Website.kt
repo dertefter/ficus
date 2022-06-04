@@ -1,4 +1,4 @@
-package com.dertefter.nstumobile
+package com.dertefter.ficus
 
 import AppPreferences
 import android.content.Context
@@ -21,18 +21,15 @@ import org.jsoup.nodes.Document
 import retrofit2.HttpException
 import retrofit2.Retrofit
 import java.io.IOException
-import java.lang.Exception
 
-class AuthException(): Exception("Auth Error")
+class AuthException() : Exception("Auth Error")
 
-class Website
-{
+class Website {
 
     var tokenId: String = ""
     var gr = ""
 
-    fun getGroup()
-    {
+    fun getGroup() {
         var htmlString: String = ""
         val client = OkHttpClient().newBuilder()
             .addInterceptor(Interceptor { chain: Interceptor.Chain ->
@@ -64,9 +61,8 @@ class Website
                     el = el.child(0)
                     var txt: String = el.toString()
                     var group = ""
-                    for (i in 32..txt.length)
-                    {
-                        if(txt[i] == ' ' || txt[i] == '<')
+                    for (i in 32..txt.length) {
+                        if (txt[i] == ' ' || txt[i] == '<')
                             break
                         group += txt[i]
                     }
@@ -76,8 +72,6 @@ class Website
                     ViewStudy()
 
 
-
-
                 } else {
                     Log.e("RETROFIT_ERROR", response.code().toString())
                 }
@@ -85,11 +79,12 @@ class Website
         }
 
     }
+
     fun getToken(): String {
         return tokenId
     }
-    fun ViewStudy()
-    {
+
+    fun ViewStudy() {
         val client = OkHttpClient().newBuilder()
             .addInterceptor(Interceptor { chain: Interceptor.Chain ->
                 val original: Request = chain.request()
@@ -111,9 +106,10 @@ class Website
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     val pretty = response.body()?.string().toString()
-                    Log.i("Got :", pretty )
+                    Log.i("Got :", pretty)
                     val context: Context = Auth.applicationContext()
-                    val inta = Intent(context, Work::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    val inta =
+                        Intent(context, Work::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     context.startActivity(inta)
                 } else {
 
@@ -125,23 +121,21 @@ class Website
     }
 
 
-
-
     fun Auth(login: String, password: String) {
         val url1 = "https://login.nstu.ru/"
         val retrofit = Retrofit.Builder().baseUrl(url1).build()
         val service = retrofit.create(APIService::class.java)
 
-        val jsonObjectString = "{\"authId\":\"eyAidHlwIjogIkpXVCIsICJhbGciOiAiSFMyNTYiIH0.eyAib3RrIjogInR2ZW9yazY0dHU5aDc5dTRtb2xoZTBrb3NkIiwgInJlYWxtIjogIm89bG9naW4sb3U9c2VydmljZXMsZGM9b3BlbmFtLGRjPWNpdSxkYz1uc3R1LGRjPXJ1IiwgInNlc3Npb25JZCI6ICJBUUlDNXdNMkxZNFNmY3dIV1l6elZqbTdlbjREYXptS2ZfQktXLTA0UGR1M0lMay4qQUFKVFNRQUNNRElBQWxOTEFCTTJNamc0T0RrM05qUXpNVFE1TXpJMk56TTUqIiB9.iQ7F98fLLFrcDlSI5kYU14d9_Dg9lKN5meoGYIdXxcA\",\"template\":\"\",\"stage\":\"JDBCExt1\",\"header\":\"Авторизация\",\"callbacks\":[{\"type\":\"NameCallback\",\"output\":[{\"name\":\"prompt\",\"value\":\"Логин:\"}],\"input\":[{\"name\":\"IDToken1\",\"value\":\"$login\"}]},{\"type\":\"PasswordCallback\",\"output\":[{\"name\":\"prompt\",\"value\":\"Пароль:\"}],\"input\":[{\"name\":\"IDToken2\",\"value\":\"$password\"}]}]}"
+        val jsonObjectString =
+            "{\"authId\":\"eyAidHlwIjogIkpXVCIsICJhbGciOiAiSFMyNTYiIH0.eyAib3RrIjogInR2ZW9yazY0dHU5aDc5dTRtb2xoZTBrb3NkIiwgInJlYWxtIjogIm89bG9naW4sb3U9c2VydmljZXMsZGM9b3BlbmFtLGRjPWNpdSxkYz1uc3R1LGRjPXJ1IiwgInNlc3Npb25JZCI6ICJBUUlDNXdNMkxZNFNmY3dIV1l6elZqbTdlbjREYXptS2ZfQktXLTA0UGR1M0lMay4qQUFKVFNRQUNNRElBQWxOTEFCTTJNamc0T0RrM05qUXpNVFE1TXpJMk56TTUqIiB9.iQ7F98fLLFrcDlSI5kYU14d9_Dg9lKN5meoGYIdXxcA\",\"template\":\"\",\"stage\":\"JDBCExt1\",\"header\":\"Авторизация\",\"callbacks\":[{\"type\":\"NameCallback\",\"output\":[{\"name\":\"prompt\",\"value\":\"Логин:\"}],\"input\":[{\"name\":\"IDToken1\",\"value\":\"$login\"}]},{\"type\":\"PasswordCallback\",\"output\":[{\"name\":\"prompt\",\"value\":\"Пароль:\"}],\"input\":[{\"name\":\"IDToken2\",\"value\":\"$password\"}]}]}"
         Log.e("a", jsonObjectString)
         val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
         CoroutineScope(Dispatchers.Main).launch {
 
-            try{
+            try {
                 val response = service.authPart1(requestBody)
                 withContext(Dispatchers.IO) {
-                    if (response.isSuccessful)
-                    {
+                    if (response.isSuccessful) {
                         val gson = GsonBuilder().setPrettyPrinting().create()
                         val prettyJson = gson.toJson(
                             JsonParser.parseString(
@@ -155,7 +149,8 @@ class Website
                         AppPreferences.token = tokenId
                         Log.d("token^ ", tokenId)
                         var CookieString = "\"NstuSsoToken\"=\"$tokenId\""
-                        val requestBody2 = CookieString.toRequestBody("application/json".toMediaTypeOrNull())
+                        val requestBody2 =
+                            CookieString.toRequestBody("application/json".toMediaTypeOrNull())
                         CoroutineScope(Dispatchers.IO).launch {
 
                             // Do the POST request and get response
@@ -174,7 +169,9 @@ class Website
                                     )
 
                                     Log.e("Pretty Printed JSON :", "part 2 success")
-                                    retrofit.newBuilder().baseUrl("https://login.nstu.ru/ssoservice/json/users/$login/").build()
+                                    retrofit.newBuilder()
+                                        .baseUrl("https://login.nstu.ru/ssoservice/json/users/$login/")
+                                        .build()
                                     CoroutineScope(Dispatchers.IO).launch {
                                         /*
                                          * For @Query: You need to replace the following line with val response = service.getEmployees(2)
@@ -188,7 +185,8 @@ class Website
                                             if (response.isSuccessful) {
                                                 Log.e("AuthPart3 :", "Success")
                                                 retrofit.newBuilder().baseUrl(url1).build()
-                                                val requestBody4 = CookieString.toRequestBody("application/json".toMediaTypeOrNull())
+                                                val requestBody4 =
+                                                    CookieString.toRequestBody("application/json".toMediaTypeOrNull())
 
                                                 CoroutineScope(Dispatchers.IO).launch {
                                                     // Do the POST request and get response
@@ -197,7 +195,8 @@ class Website
                                                     withContext(Dispatchers.Main) {
 
                                                         if (response.isSuccessful) {
-                                                            var r = response.body()?.string()?.toString()
+                                                            var r = response.body()?.string()
+                                                                ?.toString()
                                                             if (r != null) {
                                                                 AppPreferences.login = login
                                                                 AppPreferences.password = password
@@ -206,8 +205,12 @@ class Website
                                                             Log.e("PART4 :", "Okey")
 
                                                         } else {
-                                                            val context: Context = Auth.applicationContext()
-                                                            var inta = Intent(context, Login::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                                            val context: Context =
+                                                                Auth.applicationContext()
+                                                            var inta = Intent(
+                                                                context,
+                                                                Login::class.java
+                                                            ).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                                                             context.startActivity(inta)
 
                                                         }
@@ -229,30 +232,29 @@ class Website
                                 }
                             }
                         }
-                    }
-                    else{
+                    } else {
                         Log.e("a", "неверный логин или пароль")
                         throw AuthException()
 
                     }
 
 
-
-
                 }
-            } catch (e: Throwable){
+            } catch (e: Throwable) {
                 Log.e("a", "1")
                 val context: Context = Auth.applicationContext()
-                var inta = Intent(context, NetworkErrorActivity::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                var inta = Intent(
+                    context,
+                    NetworkErrorActivity::class.java
+                ).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 context.startActivity(inta)
 
-            }catch (e: HttpException) {
+            } catch (e: HttpException) {
                 Log.e("a", "2")
-            }catch (e: IOException) {
+            } catch (e: IOException) {
                 Log.e("a", "3")
             }
         }
-
 
 
     }

@@ -1,4 +1,4 @@
-package com.dertefter.nstumobile
+package com.dertefter.ficus
 
 import AppPreferences
 import android.os.Bundle
@@ -53,11 +53,11 @@ class ProfileData : AppCompatActivity() {
         spinner?.visibility = View.VISIBLE
         fab = findViewById(R.id.extended_fab)
         fab?.setOnClickListener {
-            if (editBoolean)
-            {
+            if (editBoolean) {
                 saveMode()
+            } else {
+                editMode()
             }
-            else{editMode()}
 
 
         }
@@ -71,7 +71,7 @@ class ProfileData : AppCompatActivity() {
         pEmail = findViewById(R.id.pEmail)
         pEmail?.doOnTextChanged { text, start, before, count -> EmailText = text.toString() }
         pAdress = findViewById(R.id.pAdress)
-        pAdress?.doOnTextChanged{text, start, before, count -> AdressText = text.toString()}
+        pAdress?.doOnTextChanged { text, start, before, count -> AdressText = text.toString() }
         pTel = findViewById(R.id.pTel)
         pTel?.doOnTextChanged { text, start, before, count -> TelText = text.toString() }
         pSnils = findViewById(R.id.pSnils)
@@ -135,8 +135,7 @@ class ProfileData : AppCompatActivity() {
 
     }
 
-    fun setEdit(b: Boolean)
-    {
+    fun setEdit(b: Boolean) {
         pEmail?.isEnabled = b
         pAdress?.isEnabled = b
         pTel?.isEnabled = b
@@ -149,8 +148,7 @@ class ProfileData : AppCompatActivity() {
 
     }
 
-    fun setText()
-    {
+    fun setText() {
         pEmail?.setText(EmailText)
         pAdress?.setText(AdressText)
         pTel?.setText(TelText)
@@ -162,8 +160,7 @@ class ProfileData : AppCompatActivity() {
         pLeaderID?.setText(LeaderIDText)
     }
 
-    fun editMode()
-    {
+    fun editMode() {
         fab?.shrink()
         fab?.text = "Сохранить"
         fab?.icon = getDrawable(R.drawable.ic_baseline_done_24)
@@ -173,8 +170,7 @@ class ProfileData : AppCompatActivity() {
 
     }
 
-    fun saveMode()
-    {
+    fun saveMode() {
         setEdit(false)
         spinner?.visibility = View.VISIBLE
         fab?.icon = getDrawable(R.drawable.ic_edit)
@@ -223,19 +219,27 @@ class ProfileData : AppCompatActivity() {
 
 
         CoroutineScope(Dispatchers.IO).launch {
-            try{
+            try {
                 val response = service.postForm(params)
 
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
-                        Snackbar.make(findViewById(R.id.pr_data_frame), "Изменения сохранены!", Snackbar.LENGTH_SHORT).setTextColor(getColor(R.color.md_theme_dark_inverseSurface))
+                        Snackbar.make(
+                            findViewById(R.id.pr_data_frame),
+                            "Изменения сохранены!",
+                            Snackbar.LENGTH_SHORT
+                        ).setTextColor(getColor(R.color.md_theme_dark_inverseSurface))
                             .show()
                         spinner?.visibility = View.INVISIBLE
 
                     }
                 }
-            }catch (e: Throwable){
-                Snackbar.make(findViewById(R.id.pr_data_frame), "Ошибка! Попробуйте позже...", Snackbar.LENGTH_SHORT).setTextColor(getColor(R.color.md_theme_dark_inverseSurface))
+            } catch (e: Throwable) {
+                Snackbar.make(
+                    findViewById(R.id.pr_data_frame),
+                    "Ошибка! Попробуйте позже...",
+                    Snackbar.LENGTH_SHORT
+                ).setTextColor(getColor(R.color.md_theme_dark_inverseSurface))
                     .show()
                 spinner?.visibility = View.INVISIBLE
                 editBoolean = true

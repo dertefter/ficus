@@ -65,11 +65,11 @@
             android:id="@+id/toolbar_messages"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="28dp"
             android:clipToPadding="false"
-            app:menu="@menu/messages_menu"
             android:fitsSystemWindows="false"
             app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:menu="@menu/messages_menu"
             app:title="От преподавателей" />
 
     </com.google.android.material.appbar.AppBarLayout>

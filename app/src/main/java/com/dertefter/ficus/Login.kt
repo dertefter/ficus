@@ -1,14 +1,12 @@
-package com.dertefter.nstumobile
+package com.dertefter.ficus
 
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 
 class Login : AppCompatActivity() {
@@ -33,14 +31,14 @@ class Login : AppCompatActivity() {
         loginTextView?.doOnTextChanged { text, start, count, after -> textChecker() }
         passwordTextView?.doOnTextChanged { text, start, count, after -> textChecker() }
     }
-    private fun textChecker()
-    {
+
+    private fun textChecker() {
         loginText = loginTextView?.text.toString()
         passwordText = passwordTextView?.text.toString()
         signInButton?.isEnabled = loginText != "" && passwordText != ""
     }
-    private fun signIn()
-    {
+
+    private fun signIn() {
         loading?.visibility = View.VISIBLE
         signInButton?.isEnabled = false
         loginTextView?.isEnabled = false

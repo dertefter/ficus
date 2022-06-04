@@ -1,4 +1,4 @@
-package com.dertefter.nstumobile
+package com.dertefter.ficus
 
 import AppPreferences
 import android.content.Context
@@ -12,7 +12,6 @@ import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
-import androidx.core.view.children
 import androidx.core.view.get
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
@@ -46,9 +45,10 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
     var spinner: ProgressBar? = null
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        if (isSessia){
+        if (isSessia) {
             outState.putBoolean("sessia", true)
         }
+        outState.putInt("day", day)
     }
 
     @ColorInt
@@ -63,8 +63,7 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
 
     var link2 = "https://www.nstu.ru/studies/schedule/schedule_session/"
 
-    fun sessia()
-    {
+    fun sessia() {
         spinner?.visibility = View.VISIBLE
         daySelection?.visibility = View.INVISIBLE
         days?.visibility = View.INVISIBLE
@@ -86,12 +85,10 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
                     val doc: Document = Jsoup.parse(pretty)
                     val s = doc.body().select("div.schedule__session-body")
                     val rows = s.select("> *")
-                    for (i in rows)
-                    {
+                    for (i in rows) {
                         val aud = i.select("div.schedule__session-class").text().toString()
                         var time = i.select("div.schedule__session-time").text().toString()
-                        if (time == "")
-                        {
+                        if (time == "") {
                             time = "08:30"
                         }
                         val exam = i.select("div.schedule__session-item").text().toString()
@@ -106,7 +103,6 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
                     }
 
 
-
                 } else {
 
                     Log.e("RETROFIT_ERROR", response.code().toString())
@@ -115,14 +111,14 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
             }
         }
     }
-    fun lessons()
-    {
+
+    fun lessons() {
         spinner?.visibility = View.VISIBLE
         daySelection?.visibility = View.VISIBLE
         toolbar?.title = "Расписание занятий"
         val mInflater = LayoutInflater.from(activity)
         isSessia = false
-        for (i in 0..5){
+        for (i in 0..5) {
             ((days?.get(i) as FrameLayout).get(0) as LinearLayout).removeAllViews()
         }
         days?.visibility = View.VISIBLE
@@ -131,7 +127,7 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
             .addInterceptor(Interceptor { chain: Interceptor.Chain ->
                 val original: Request = chain.request()
                 val authorized: Request = original.newBuilder()
-                    .addHeader("Cookie", "NstuSsoToken="+AppPreferences.token)
+                    .addHeader("Cookie", "NstuSsoToken=" + AppPreferences.token)
                     .build()
                 chain.proceed(authorized)
             })
@@ -154,38 +150,47 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
                     val doc: Document = Jsoup.parse(pretty)
                     val s = doc.body().select("div.schedule__table-body").first()
                     val rows = s.select("> *")
-                    for (i in 0..rows.size - 1)
-                    {
+                    for (i in 0..rows.size - 1) {
                         val lessons = rows[i].select("div.schedule__table-cell")[1].select("> *")
-                        for (j in lessons)
-                        {
+                        for (j in lessons) {
                             var item: View = mInflater.inflate(R.layout.item, null, false)
-                            item.findViewById<TextView>(R.id.time).text = j.getElementsByAttributeValue("data-type", "time").text().toString()
+                            item.findViewById<TextView>(R.id.time).text =
+                                j.getElementsByAttributeValue("data-type", "time").text().toString()
                             var itemsInRow = j.select("div.schedule__table-cell")[1].select("> *")
-                            if (itemsInRow.size == 1)
-                            {
-                                if (itemsInRow.select("span[data-week]").size > 0)
-                                {
-                                    if(itemsInRow.select("span[data-week]").attr("data-week") == "current"){
-                                        val lesson_text = itemsInRow.select("div.schedule__table-item").first().ownText().toString().replace("·", " ").replace(",", "")
-                                        if(lesson_text != "")
-                                        {
-                                            val aud = itemsInRow.select("div.schedule__table-class").text().toString()
+                            if (itemsInRow.size == 1) {
+                                if (itemsInRow.select("span[data-week]").size > 0) {
+                                    if (itemsInRow.select("span[data-week]")
+                                            .attr("data-week") == "current"
+                                    ) {
+                                        val lesson_text =
+                                            itemsInRow.select("div.schedule__table-item").first()
+                                                .ownText().toString().replace("·", " ")
+                                                .replace(",", "")
+                                        if (lesson_text != "") {
+                                            val aud = itemsInRow.select("div.schedule__table-class")
+                                                .text().toString()
                                             item.findViewById<TextView>(R.id.aud).text = aud
-                                            item.findViewById<TextView>(R.id.lesson).text = lesson_text
+                                            item.findViewById<TextView>(R.id.lesson).text =
+                                                lesson_text
                                             var this_day: FrameLayout = days?.get(i) as FrameLayout
                                             (this_day.get(0) as LinearLayout).addView(item)
                                         }
                                     }
-                                }
-                                else {
-                                    val typeWork = itemsInRow.select("span.schedule__table-typework").text().toString()
+                                } else {
+                                    val typeWork =
+                                        itemsInRow.select("span.schedule__table-typework").text()
+                                            .toString()
                                     val lesson_text =
-                                        itemsInRow.select("div.schedule__table-item").first().ownText()
-                                            .toString().replace("·", " ").replace(",", "").replace("  ", "")
+                                        itemsInRow.select("div.schedule__table-item").first()
+                                            .ownText()
+                                            .toString().replace("·", " ").replace(",", "")
+                                            .replace("  ", "")
                                     if (lesson_text != "") {
-                                        val aud = itemsInRow.select("div.schedule__table-class").text().toString()
-                                        item.findViewById<TextView>(R.id.aud).text = aud  + ", " + typeWork
+                                        val aud =
+                                            itemsInRow.select("div.schedule__table-class").text()
+                                                .toString()
+                                        item.findViewById<TextView>(R.id.aud).text =
+                                            aud + ", " + typeWork
                                         item.findViewById<TextView>(R.id.lesson).text =
                                             lesson_text
                                         var this_day: FrameLayout = days?.get(i) as FrameLayout
@@ -194,17 +199,18 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
                                 }
                                 spinnerBar?.visibility = View.INVISIBLE
                             }
-                            if (itemsInRow.size == 2)
-                            {
+                            if (itemsInRow.size == 2) {
                                 var spans = itemsInRow.select("span[data-week]")
-                                for (t in spans)
-                                {
-                                    if (t.attr("data-week") == "current")
-                                    {
+                                for (t in spans) {
+                                    if (t.attr("data-week") == "current") {
 
                                         val it_ = t.parent().parent().parent()
-                                        val lesson_text = it_.select("div.schedule__table-item").first().ownText().toString().replace("·", " ").replace(",", "")
-                                        val aud_text = it_.select("div.schedule__table-class").text().toString()
+                                        val lesson_text =
+                                            it_.select("div.schedule__table-item").first().ownText()
+                                                .toString().replace("·", " ").replace(",", "")
+                                        val aud_text =
+                                            it_.select("div.schedule__table-class").text()
+                                                .toString()
                                         item.findViewById<TextView>(R.id.lesson).text = lesson_text
                                         item.findViewById<TextView>(R.id.aud).text = aud_text
                                         var this_day: FrameLayout = days?.get(i) as FrameLayout
@@ -221,8 +227,6 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
                     }
 
 
-
-
                 } else {
 
                     Log.e("RETROFIT_ERROR", response.code().toString())
@@ -232,72 +236,73 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
         }
     }
 
-    fun arrowRight(){
-        if (day < 6){
+    fun arrowRight() {
+        if (day < 6) {
             day++
-            for (i in 0..5){
-                if (i == day - 1){
+            for (i in 0..5) {
+                if (i == day - 1) {
                     days?.get(i)?.visibility = View.VISIBLE
-                } else{
+                } else {
                     days?.get(i)?.visibility = View.INVISIBLE
                 }
             }
-            if (day == 1){
+            if (day == 1) {
                 dayView?.text = "Понедельник"
-            } else if (day == 2){
+            } else if (day == 2) {
                 dayView?.text = "Вторник"
-            }else if (day == 3){
+            } else if (day == 3) {
                 dayView?.text = "Среда"
-            }else if (day == 4){
+            } else if (day == 4) {
                 dayView?.text = "Четверг"
-            }else if (day == 5){
+            } else if (day == 5) {
                 dayView?.text = "Пятница"
-            }else if (day == 6){
+            } else if (day == 6) {
                 dayView?.text = "Суббота"
             }
-            if (day == 6){
+            if (day == 6) {
                 arrowRightButton?.visibility = View.INVISIBLE
-            }else{
+            } else {
                 arrowRightButton?.visibility = View.VISIBLE
             }
-            if (day == 1){
+            if (day == 1) {
                 arrowLeftButton?.visibility = View.INVISIBLE
-            }else{
+            } else {
                 arrowLeftButton?.visibility = View.VISIBLE
             }
         }
     }
-    fun arrowLeft(){
-        if (day > 1){
+
+    fun arrowLeft() {
+        if (day > 1) {
             day--
-            for (i in 0..5){
-                if (i == day - 1){
+            for (i in 0..5) {
+                if (i == day - 1) {
                     days?.get(i)?.visibility = View.VISIBLE
-                } else{
+                } else {
                     days?.get(i)?.visibility = View.INVISIBLE
                 }
             }
-            if (day == 1){
+            if (day == 1) {
                 dayView?.text = "Понедельник"
-            } else if (day == 2){
+            } else if (day == 2) {
                 dayView?.text = "Вторник"
-            }else if (day == 3){
+            } else if (day == 3) {
                 dayView?.text = "Среда"
-            }else if (day == 4){
+            } else if (day == 4) {
                 dayView?.text = "Четверг"
-            }else if (day == 5){
+            } else if (day == 5) {
                 dayView?.text = "Пятница"
-            }else if (day == 6){
+            } else if (day == 6) {
                 dayView?.text = "Суббота"
             }
-            if (day == 6){
+            if (day == 6) {
                 arrowRightButton?.visibility = View.INVISIBLE
-            }else{
+            } else {
                 arrowRightButton?.visibility = View.VISIBLE
             }
-            if (day == 1){
+            if (day == 1) {
                 arrowLeftButton?.visibility = View.INVISIBLE
-            }else{
+            } else {
                 arrowLeftButton?.visibility = View.VISIBLE
             }
         }
@@ -321,36 +326,41 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
         days = view.findViewById(R.id.days)
         var today: Int = calendar.get(Calendar.DAY_OF_WEEK)
         today -= 1
-        if (today < 1){today = 1}
+        if (today < 1) {
+            today = 1
+        }
         day = today
-        for (i in 0..5){
-            if (i == day - 1){
+        if (savedInstanceState?.get("day") != null) {
+            day = savedInstanceState?.get("day") as Int
+        }
+        for (i in 0..5) {
+            if (i == day - 1) {
                 days?.get(i)?.visibility = View.VISIBLE
-            } else{
+            } else {
                 days?.get(i)?.visibility = View.INVISIBLE
             }
         }
-        if (day == 6){
+        if (day == 6) {
             arrowRightButton?.visibility = View.INVISIBLE
-        }else{
+        } else {
             arrowRightButton?.visibility = View.VISIBLE
         }
-        if (day == 1){
+        if (day == 1) {
             arrowLeftButton?.visibility = View.INVISIBLE
-        }else{
+        } else {
             arrowLeftButton?.visibility = View.VISIBLE
         }
-        if (day == 1){
+        if (day == 1) {
             dayView?.text = "Понедельник"
-        } else if (day == 2){
+        } else if (day == 2) {
             dayView?.text = "Вторник"
-        }else if (day == 3){
+        } else if (day == 3) {
             dayView?.text = "Среда"
-        }else if (day == 4){
+        } else if (day == 4) {
             dayView?.text = "Четверг"
-        }else if (day == 5){
+        } else if (day == 5) {
             dayView?.text = "Пятница"
-        }else if (day == 6){
+        } else if (day == 6) {
             dayView?.text = "Суббота"
         }
 
@@ -359,15 +369,11 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
 
         toolbar = view.findViewById(R.id.toolbar_shedule)
 
-        if (AppPreferences.group != null)
-        {
+        if (AppPreferences.group != null) {
             gr = AppPreferences.group!!
-        }
-        else
-        {
+        } else {
             Log.e("ошибка", "нет группы")
         }
-
 
 
         var link1 =
@@ -376,12 +382,10 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
 
 
 
-        if (savedInstanceState?.getBoolean("sessia") == false || savedInstanceState?.getBoolean("sessia") == null)
-        {
+        if (savedInstanceState?.getBoolean("sessia") == false || savedInstanceState?.getBoolean("sessia") == null) {
             lessons()
 
-        }
-        else{
+        } else {
             sessia()
         }
 

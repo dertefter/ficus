@@ -1,5 +1,6 @@
-package com.dertefter.nstumobile
+package com.dertefter.ficus
 
+import AppPreferences
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -12,8 +13,8 @@ class NetworkErrorActivity : AppCompatActivity() {
     override fun onBackPressed() {
         super.onBackPressed()
     }
-    fun logOut()
-    {
+
+    fun logOut() {
         AppPreferences.name = null
         AppPreferences.group = null
         AppPreferences.fullName = null
@@ -28,7 +29,7 @@ class NetworkErrorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.network_error_activity)
         log_out = findViewById(R.id.logout_auth)
-        if (AppPreferences.name == null){
+        if (AppPreferences.name == null) {
             log_out?.visibility = View.INVISIBLE
         }
 

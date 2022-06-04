@@ -1,5 +1,6 @@
-package com.dertefter.nstumobile
+package com.dertefter.ficus
 
+import AppPreferences
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -18,6 +19,7 @@ import okhttp3.Request
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import retrofit2.Retrofit
+import java.lang.StringBuilder
 
 class Messages : Fragment(R.layout.messages_fragment) {
     var messagesView: LinearLayout? = null
@@ -33,7 +35,7 @@ class Messages : Fragment(R.layout.messages_fragment) {
 
     }
 
-    fun mes(value: Int){
+    fun mes(value: Int) {
         current_value = value
         messagesView?.removeAllViews()
         animation?.visibility = View.INVISIBLE
@@ -42,7 +44,7 @@ class Messages : Fragment(R.layout.messages_fragment) {
             .addInterceptor(Interceptor { chain: Interceptor.Chain ->
                 val original: Request = chain.request()
                 val authorized: Request = original.newBuilder()
-                    .addHeader("Cookie", "NstuSsoToken="+AppPreferences.token)
+                    .addHeader("Cookie", "NstuSsoToken=" + AppPreferences.token)
                     .build()
                 chain.proceed(authorized)
             })
@@ -66,24 +68,46 @@ class Messages : Fragment(R.layout.messages_fragment) {
                     val messages = tbody?.select("tr")
                     spinner?.visibility = View.INVISIBLE
                     if (messages != null) {
-                        if(messages.size != 0){
+                        if (messages.size != 0) {
                             animation?.visibility = View.INVISIBLE
-                        }
-                        else{
+                        } else {
                             animation?.visibility = View.VISIBLE
                         }
-                        for (i in messages){
-                            var message_item: View = mInflater!!.inflate(R.layout.message, null, false)
-                            message_item.findViewById<TextView>(R.id.send_by).text = i.select("span")[0].text().toString().replace("(преподаватель)", "")
-                            message_item.findViewById<TextView>(R.id.message_text).text = i.select("div").text().toString()
-                            message_item.findViewById<ImageView>(R.id.send_by_image).setImageResource(R.drawable.ic_avatar)
+                        for (i in messages) {
+                            var message_item: View =
+                                mInflater!!.inflate(R.layout.message, null, false)
+                            message_item.findViewById<TextView>(R.id.send_by).text =
+                                i.select("span")[0].text().toString().replace("(преподаватель)", "")
+                            message_item.findViewById<TextView>(R.id.message_text).text =
+                                i.select("div").text().toString()
+                            message_item.findViewById<ImageView>(R.id.send_by_image)
+                                .setImageResource(R.drawable.ic_avatar)
                             message_item.isClickable = true
-                            message_item.setOnClickListener{
-                                val inta = Intent(Auth.applicationContext(), ReadMessageActivity::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                                inta.putExtra("send_by",i.select("span")[0].text().toString().replace("(преподаватель)", ""))
-                                inta.putExtra("theme", i.select("span")[1].text().toString().replace("--", "\n"))
-                                inta.putExtra("text", i.select("span")[2].text().toString().replace("--", "\n"))
-                                inta.putExtra("mesid", i.select("td")[0].select("input")[0].attr("id").toString().replace("id_chk_", ""))
+                            message_item.setOnClickListener {
+                                val inta = Intent(
+                                    Auth.applicationContext(),
+                                    ReadMessageActivity::class.java
+                                ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                inta.putExtra(
+                                    "send_by",
+                                    i.select("span")[0].text().toString()
+                                        .replace("(преподаватель)", "").replace("(деканат)", "")
+                                )
+                                inta.putExtra(
+                                    "theme",
+                                    i.select("span")[1].text().toString().replace("--", "\n")
+                                )
+                                var text = i.select("span")[2].text().toString().replace("--", "\n")
+                                text = text.replaceRange(0, 2, "")
+                                inta.putExtra(
+                                    "text",
+                                    text
+                                )
+                                inta.putExtra(
+                                    "mesid",
+                                    i.select("td")[0].select("input")[0].attr("id").toString()
+                                        .replace("id_chk_", "")
+                                )
                                 Work.applicationContext().startActivity(inta)
                             }
 

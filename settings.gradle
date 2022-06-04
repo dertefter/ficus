@@ -14,6 +14,6 @@ dependencyResolutionManagement {
         maven { url 'https://jitpack.io' }
     }
 }
-rootProject.name = "NSTU Mobile"
-include ':models', ':app'
+rootProject.name = "Ficus"
+include ':app'
 

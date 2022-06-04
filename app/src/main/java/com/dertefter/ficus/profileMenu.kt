@@ -1,4 +1,4 @@
-package com.dertefter.nstumobile
+package com.dertefter.ficus
 
 import AppPreferences
 import android.content.Intent
@@ -30,8 +30,11 @@ class profileMenu : Fragment(R.layout.profile_menu) {
     var vk: ImageButton? = null
     var tg: ImageButton? = null
 
-    fun editProfile(){
-        val profiledataIntent = Intent(Auth.applicationContext(), ProfileData::class.java).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+    fun editProfile() {
+        val profiledataIntent = Intent(
+            Auth.applicationContext(),
+            ProfileData::class.java
+        ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         Auth.applicationContext().startActivity(profiledataIntent)
     }
 
@@ -43,11 +46,15 @@ class profileMenu : Fragment(R.layout.profile_menu) {
         vk = view.findViewById(R.id.vk)
         tg = view.findViewById(R.id.tg)
         tg?.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/nstumobile_dev/"))
+            val browserIntent =
+                Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/nstumobile_dev/"))
             startActivity(browserIntent)
         }
         vk?.setOnClickListener {
-            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse("https://vk.me/join/GLo5/Ww6z/8vDWV4nZnNx/KTu4rx_2g07Dc="))
+            val browserIntent = Intent(
+                Intent.ACTION_VIEW,
+                Uri.parse("https://vk.me/join/GLo5/Ww6z/8vDWV4nZnNx/KTu4rx_2g07Dc=")
+            )
             startActivity(browserIntent)
         }
 
@@ -68,13 +75,12 @@ class profileMenu : Fragment(R.layout.profile_menu) {
             }
         })
         nameText = view.findViewById(R.id.name)
-        if (AppPreferences.name == null)
-        {
+        if (AppPreferences.name == null) {
             val client = OkHttpClient().newBuilder()
                 .addInterceptor(Interceptor { chain: Interceptor.Chain ->
                     val original: Request = chain.request()
                     val authorized: Request = original.newBuilder()
-                        .addHeader("Cookie", "NstuSsoToken="+AppPreferences.token)
+                        .addHeader("Cookie", "NstuSsoToken=" + AppPreferences.token)
                         .build()
                     chain.proceed(authorized)
                 })
@@ -93,7 +99,8 @@ class profileMenu : Fragment(R.layout.profile_menu) {
                         val pretty = response.body()?.string().toString()
                         //Log.e("pretty-score", pretty)
                         val doc: Document = Jsoup.parse(pretty)
-                        var s = doc.body().select("div.sysCaption").select("div")[4].select("div")[9].text().toString()
+                        var s = doc.body().select("div.sysCaption")
+                            .select("div")[4].select("div")[9].text().toString()
                         val sarr = s.split(" ").toTypedArray()
                         AppPreferences.fullName = sarr[0] + " " + sarr[1] + " " + sarr[2]
                         s = sarr[1]
@@ -108,9 +115,7 @@ class profileMenu : Fragment(R.layout.profile_menu) {
                     }
                 }
             }
-        }
-        else
-        {
+        } else {
             nameText?.text = AppPreferences.name
 
         }

@@ -5,8 +5,8 @@
     android:id="@+id/score_fragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:tag="scoreee"
     android:fitsSystemWindows="false"
+    android:tag="scoreee"
     tools:context=".Work">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -15,37 +15,102 @@
         android:clipToPadding="false"
         android:fitsSystemWindows="false"
         app:liftOnScroll="true">
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_score"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="28dp"
             android:clipToPadding="false"
             android:fitsSystemWindows="false"
-            app:layout_scrollFlags="scroll|enterAlways|snap"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
             app:menu="@menu/toolbar_score_menu"
             app:title="Зачётка" />
     </com.google.android.material.appbar.AppBarLayout>
 
 
-
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="false"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         app:layout_constraintTop_toBottomOf="@+id/toolbar_score"
         tools:ignore="SpeakableTextPresentCheck">
 
-        <LinearLayout
+        <FrameLayout
             android:id="@+id/score_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp" />
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:fitsSystemWindows="false" />
     </androidx.core.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/scoreSelection"
+            style="@style/Widget.Material3.CardView.Filled"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginBottom="10dp"
+            app:cardBackgroundColor="?attr/colorSecondaryContainer"
+            app:cardCornerRadius="65dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal"
+                app:layout_anchorGravity="bottom">
+
+                <ImageButton
+                    app:tint="?attr/colorOnSecondaryContainer"
+                    android:id="@+id/arrowLeft"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:minWidth="48dp"
+                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <TextView
+                    android:textColor="?attr/colorOnSecondaryContainer"
+                    android:id="@+id/score_state"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:foregroundGravity="center"
+                    android:gravity="center"
+                    android:text="1 семестр"
+                    android:textSize="20sp" />
+
+                <ImageButton
+                    app:tint="?attr/colorOnSecondaryContainer"
+                    android:id="@+id/arrowRight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:minWidth="48dp"
+                    app:srcCompat="@drawable/ic_baseline_keyboard_arrow_right_24"
+                    tools:ignore="SpeakableTextPresentCheck" />
+            </LinearLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </RelativeLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

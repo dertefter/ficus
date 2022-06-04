@@ -1,7 +1,6 @@
-package com.dertefter.nstumobile
+package com.dertefter.ficus
 
 import AppPreferences
-import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.os.PersistableBundle
@@ -10,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.color.DynamicColors
 
 
 class Work : AppCompatActivity() {
@@ -22,7 +20,7 @@ class Work : AppCompatActivity() {
         private var instance: Work? = null
 
 
-        fun applicationContext() : Context {
+        fun applicationContext(): Context {
             return instance!!.applicationContext
         }
     }
@@ -55,8 +53,7 @@ class Work : AppCompatActivity() {
         val messagesFragment = Messages()
         val profileFragment = Profile()
         var update = savedInstanceState?.getBoolean("update")
-        if (update == null || update == true)
-        {
+        if (update == null || update == true) {
             setCurrentFragment(timetableFragment)
             setCurrentFragment(scoreFragment)
             setCurrentFragment(messagesFragment)
@@ -68,7 +65,7 @@ class Work : AppCompatActivity() {
 
 
         bnav?.setOnNavigationItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.timetable_nav -> {
                     showFragment(timetableFragment)
                     hideFragment(scoreFragment)
@@ -97,20 +94,23 @@ class Work : AppCompatActivity() {
             true
         }
     }
+
     private fun showFragment(fragment: Fragment) = supportFragmentManager.beginTransaction().apply {
         show(fragment)
         commit()
     }
+
     private fun hideFragment(fragment: Fragment) = supportFragmentManager.beginTransaction().apply {
         hide(fragment)
         commit()
     }
 
-    private fun setCurrentFragment(fragment: Fragment) = supportFragmentManager.beginTransaction().apply {
-        add(R.id.flFragment, fragment)
-        hide(fragment)
-        commit()
-    }
+    private fun setCurrentFragment(fragment: Fragment) =
+        supportFragmentManager.beginTransaction().apply {
+            add(R.id.flFragment, fragment)
+            hide(fragment)
+            commit()
+        }
 
     override fun onSaveInstanceState(outState: Bundle, outPersistentState: PersistableBundle) {
         super.onSaveInstanceState(outState, outPersistentState)
@@ -126,7 +126,7 @@ class Work : AppCompatActivity() {
         val messagesFragment = Messages()
         val profileFragment = Profile()
         bnav.setOnNavigationItemSelectedListener {
-            when(it.itemId){
+            when (it.itemId) {
                 R.id.timetable_nav -> {
                     showFragment(supportFragmentManager.fragments.get(0))
                     hideFragment(supportFragmentManager.fragments.get(1))
@@ -156,10 +156,7 @@ class Work : AppCompatActivity() {
         }
 
 
-
-
     }
-
 
 
 }
