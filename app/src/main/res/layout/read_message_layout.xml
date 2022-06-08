@@ -30,13 +30,14 @@
     </com.google.android.material.appbar.MaterialToolbar>
 
     <ScrollView
+        android:id="@+id/read_mes_scroll_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar_read_message"
 
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_read_message"
         tools:ignore="SpeakableTextPresentCheck">
 
         <LinearLayout
@@ -62,7 +63,7 @@
         android:id="@+id/delete_this"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_margin="24dp"
         android:clickable="true"
         android:focusable="true"
         android:visibility="visible"

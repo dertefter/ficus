@@ -1,7 +1,9 @@
 package com.dertefter.ficus
 
 import AppPreferences
+import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
@@ -22,6 +24,7 @@ class ReadMessageActivity : AppCompatActivity() {
     var toolbar: MaterialToolbar? = null
     var text: TextView? = null
     var fab: FloatingActionButton? = null
+    var scrollView: ScrollView? = null
 
     private fun deleteThis(MessageID: String) {
         var tokenId = AppPreferences.token
@@ -73,6 +76,14 @@ class ReadMessageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.read_message_layout)
         WindowCompat.setDecorFitsSystemWindows(window, false)
+        scrollView = findViewById(R.id.read_mes_scroll_view)
+        scrollView?.setOnScrollChangeListener { view, i, i2, i3, i4 ->
+            if (i2 <= i4) {
+                ObjectAnimator.ofFloat(fab, "translationX", 2000f).start()
+            } else {
+                ObjectAnimator.ofFloat(fab, "translationX", 0f).start()
+            }
+        }
         var messageID: String = intent.getStringExtra("mesid")!!
         toolbar = findViewById(R.id.toolbar_read_message)
         text = findViewById(R.id.read_message_text)

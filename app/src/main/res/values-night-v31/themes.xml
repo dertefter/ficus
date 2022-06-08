@@ -1,6 +1,7 @@
 <resources>
 
     <style name="Theme.NSTUMobile" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowLightNavigationBar">false</item>
         <item name="android:windowSplashScreenBackground">@android:color/system_neutral1_900</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/logo_icon_svg</item>
         <item name="colorPrimary">@color/md_theme_dark_primary</item>
@@ -28,7 +29,7 @@
         <item name="colorOutline">@color/md_theme_dark_outline</item>
         <item name="colorOnSurfaceInverse">@color/md_theme_dark_inverseOnSurface</item>
         <item name="colorSurfaceInverse">@color/md_theme_dark_inverseSurface</item>
-        <item name="colorPrimaryInverse">@color/md_theme_dark_primaryInverse</item>
+        <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
         <item name="android:navigationBarColor">
             @android:color/transparent
         </item>
@@ -47,6 +48,7 @@
     </style>
 
     <style name="Theme.NSTUMobile.ReadMessage" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowLightNavigationBar">false</item>
         <item name="colorPrimary">@color/md_theme_dark_primary</item>
         <item name="colorOnPrimary">@color/md_theme_dark_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_dark_primaryContainer</item>
@@ -72,7 +74,7 @@
         <item name="colorOutline">@color/md_theme_dark_outline</item>
         <item name="colorOnSurfaceInverse">@color/md_theme_dark_inverseOnSurface</item>
         <item name="colorSurfaceInverse">@color/md_theme_dark_inverseSurface</item>
-        <item name="colorPrimaryInverse">@color/md_theme_dark_primaryInverse</item>
+        <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
         <item name="android:navigationBarColor">
             @android:color/transparent
         </item>
@@ -89,6 +91,7 @@
     </style>
 
     <style name="Theme.NSTUMobile.NoBar" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowLightNavigationBar">false</item>
         <item name="colorPrimary">@color/md_theme_dark_primary</item>
         <item name="colorOnPrimary">@color/md_theme_dark_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_dark_primaryContainer</item>
@@ -114,7 +117,7 @@
         <item name="colorOutline">@color/md_theme_dark_outline</item>
         <item name="colorOnSurfaceInverse">@color/md_theme_dark_inverseOnSurface</item>
         <item name="colorSurfaceInverse">@color/md_theme_dark_inverseSurface</item>
-        <item name="colorPrimaryInverse">@color/md_theme_dark_primaryInverse</item>
+        <item name="colorPrimaryInverse">@color/md_theme_dark_inversePrimary</item>
         <item name="android:statusBarColor">@color/md_theme_dark_background</item>
         <item name="android:navigationBarColor">@color/md_theme_dark_background</item>
         <item name="android:windowLightStatusBar">false</item>

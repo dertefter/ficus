@@ -111,21 +111,19 @@ class Score : Fragment(R.layout.fragment_score) {
                                 item.findViewById<LinearLayout>(R.id.cardPrimary1).setBackgroundColor(Color.RED)
                                 item.findViewById<ImageView>(R.id.cardPrimary2).setColorFilter(Color.RED)
                                 item.findViewById<ImageView>(R.id.cardPrimary2).setImageResource(R.drawable.ic_baseline_error_outline_24)
-                            }else{
-                                item.findViewById<ImageView>(R.id.cardPrimary2).setColorFilter(Color.GREEN)
                             }
                             semestr.addView(item)
                         }
                         scoreView?.addView(semestr)
                     }
                     for (i in 0..count - 1) {
-                        if (i == selectedSemestr - 1) {
+                        if (i == count - 1) {
                             (scoreView?.get(i) as LinearLayout).visibility = View.VISIBLE
                         } else {
                             (scoreView?.get(i) as LinearLayout).visibility = View.INVISIBLE
                         }
                     }
-                    if (count == 1) {
+                    if (count == 0) {
                         arrowLeft?.visibility = View.INVISIBLE
                     } else {
                         arrowLeft?.visibility = View.VISIBLE
@@ -135,6 +133,7 @@ class Score : Fragment(R.layout.fragment_score) {
                     } else {
                         arrowRight?.visibility = View.VISIBLE
                     }
+                    semTextView?.text = (count).toString() + " семестр"
 
 
                 } else {
@@ -167,6 +166,7 @@ class Score : Fragment(R.layout.fragment_score) {
         } else {
             arrowRight?.visibility = View.VISIBLE
         }
+        semTextView?.text = (count).toString() + " семестр"
     }
 
     fun arrowRight() {
@@ -190,6 +190,7 @@ class Score : Fragment(R.layout.fragment_score) {
         } else {
             arrowRight?.visibility = View.VISIBLE
         }
+        semTextView?.text = (count).toString() + " семестр"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -214,6 +215,8 @@ class Score : Fragment(R.layout.fragment_score) {
             arrowRight()
         }
         score()
+
+
 
     }
 

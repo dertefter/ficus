@@ -6,6 +6,7 @@
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable-v24/ic_launcher_background.xml" value="0.121" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/emply_devider.xml" value="0.1795" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/empty_devider_vertical.xml" value="0.1795" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.1885" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.1295" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2265" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.121" />
@@ -48,6 +49,7 @@
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/wifi_nstu.xml" value="0.1" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/menu/bottom_bav_menu.xml" value="0.15572916666666667" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/menu/messages_menu.xml" value="0.12227447627191107" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/menu/messages_selectable_menu.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/menu/profile_menu.xml" value="0.1" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/menu/read_mesage_menu.xml" value="0.20521590423257802" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/menu/toolbar_score_menu.xml" value="0.20521590423257802" />

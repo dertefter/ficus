@@ -3,17 +3,22 @@
     <item
         android:id="@+id/timetable_nav"
         android:title="Расписание"
+        android:tooltipText="@null"
         android:icon="@drawable/ic_timetable" />
     <item
         android:id="@+id/score_nav"
         android:title="Успеваемость"
+        android:tooltipText="@null"
+        android:longClickable="false"
         android:icon="@drawable/ic_score" />
     <item
         android:id="@+id/messages_nav"
+        android:tooltipText="@null"
         android:title="Сообщения"
         android:icon="@drawable/ic_messages" />
     <item
         android:id="@+id/profile_nav"
+        android:tooltipText="@null"
         android:title="Профиль"
         android:icon="@drawable/ic_profile" />
 </menu>

@@ -4,9 +4,14 @@ import AppPreferences
 import android.content.Context
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.TooltipCompat
 import androidx.core.view.WindowCompat
+import androidx.core.view.forEach
+import androidx.core.view.iterator
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -50,6 +55,14 @@ class Work : AppCompatActivity() {
         val timetableFragment = timeTable()
         val scoreFragment = Score()
         bnav = findViewById(R.id.bottomNavigationView)
+        bnav?.menu?.forEach {
+            val view = bnav?.findViewById<View>(it.itemId)
+            view?.setOnLongClickListener {
+                // your logic here
+                true
+            }
+        }
+
         val messagesFragment = Messages()
         val profileFragment = Profile()
         var update = savedInstanceState?.getBoolean("update")
@@ -62,7 +75,7 @@ class Work : AppCompatActivity() {
 
         }
 
-
+//        bnav
 
         bnav?.setOnNavigationItemSelectedListener {
             when (it.itemId) {
@@ -125,6 +138,7 @@ class Work : AppCompatActivity() {
         val scoreFragment = Score()
         val messagesFragment = Messages()
         val profileFragment = Profile()
+
         bnav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.timetable_nav -> {

@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:name=".Ficus"
         android:theme="@style/Theme.NSTUMobile"
-        android:versionName="Sirena">
+        >
         <activity
             android:name=".Auth"
             android:exported="true"
