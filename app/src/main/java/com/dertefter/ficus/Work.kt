@@ -75,8 +75,6 @@ class Work : AppCompatActivity() {
 
         }
 
-//        bnav
-
         bnav?.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.timetable_nav -> {
@@ -84,27 +82,31 @@ class Work : AppCompatActivity() {
                     hideFragment(scoreFragment)
                     hideFragment(messagesFragment)
                     hideFragment(profileFragment)
+                    true
                 }
                 R.id.messages_nav -> {
                     hideFragment(timetableFragment)
                     hideFragment(scoreFragment)
                     showFragment(messagesFragment)
                     hideFragment(profileFragment)
+                    true
                 }
                 R.id.score_nav -> {
                     hideFragment(timetableFragment)
                     showFragment(scoreFragment)
                     hideFragment(messagesFragment)
                     hideFragment(profileFragment)
+                    true
                 }
                 R.id.profile_nav -> {
                     hideFragment(timetableFragment)
                     hideFragment(scoreFragment)
                     hideFragment(messagesFragment)
                     showFragment(profileFragment)
+                    true
                 }
+                else -> false
             }
-            true
         }
     }
 

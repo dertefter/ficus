@@ -5,6 +5,5 @@
         android:title="Зачётка" />
     <item
         android:id="@+id/weeks_score"
-        android:icon="@drawable/ic_messages"
         android:title="Контрольные недели" />
 </menu>

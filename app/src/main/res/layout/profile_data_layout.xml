@@ -266,7 +266,7 @@
         android:layout_margin="16dp"
         android:text="Редактировать"
         app:fabSize="normal"
-        app:icon="@drawable/ic_edit" />
+        app:icon="@drawable/edit" />
 
     <ProgressBar
         android:id="@+id/spinner_pr"

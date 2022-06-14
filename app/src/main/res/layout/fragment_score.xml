@@ -22,7 +22,6 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_marginTop="28dp"
             app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:menu="@menu/toolbar_score_menu"
             app:title="Зачётка" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -39,8 +38,8 @@
             android:id="@+id/score_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp" />
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp" />
     </androidx.core.widget.NestedScrollView>
 
     <RelativeLayout

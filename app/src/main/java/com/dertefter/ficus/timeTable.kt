@@ -243,7 +243,7 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
                 if (i == day - 1) {
                     days?.get(i)?.visibility = View.VISIBLE
                 } else {
-                    days?.get(i)?.visibility = View.INVISIBLE
+                    days?.get(i)?.visibility = View.GONE
                 }
             }
             if (day == 1) {
@@ -279,7 +279,7 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
                 if (i == day - 1) {
                     days?.get(i)?.visibility = View.VISIBLE
                 } else {
-                    days?.get(i)?.visibility = View.INVISIBLE
+                    days?.get(i)?.visibility = View.GONE
                 }
             }
             if (day == 1) {
@@ -337,7 +337,7 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
             if (i == day - 1) {
                 days?.get(i)?.visibility = View.VISIBLE
             } else {
-                days?.get(i)?.visibility = View.INVISIBLE
+                days?.get(i)?.visibility = View.GONE
             }
         }
         if (day == 6) {

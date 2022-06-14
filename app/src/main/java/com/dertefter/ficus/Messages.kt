@@ -108,7 +108,7 @@ class Messages : Fragment(R.layout.messages_fragment) {
                             message_item.findViewById<TextView>(R.id.message_text).text =
                                 i.select("div").text().toString().replace(" -- ", ": ")
                             message_item.findViewById<ImageView>(R.id.send_by_image)
-                                .setImageResource(R.drawable.ic_avatar)
+                                .setImageResource(R.drawable.ic_round_account_circle_24)
                             message_item.findViewById<TextView>(R.id.mes_id).text =  i.select("td")[0].select("input")[0].attr("id").toString()
                                 .replace("id_chk_", "")
                             message_item.isClickable = true

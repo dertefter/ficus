@@ -5,6 +5,5 @@
         android:title="Расписание занятий" />
     <item
         android:id="@+id/l2"
-        android:title="Расписание сессии"
-        android:icon="@drawable/ic_messages" />
+        android:title="Расписание сессии"/>
 </menu>

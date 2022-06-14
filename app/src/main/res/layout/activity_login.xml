@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorSurfaceVariant"
         android:padding="20dp"
-        app:cardCornerRadius="32dp"
+        app:cardCornerRadius="26dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
                     android:layout_height="wrap_content"
                     android:text="Авторизация"
                     android:textSize="28sp"
-                    android:textStyle="bold" />
+                    android:textStyle="normal" />
 
                 <Space
                     android:layout_width="match_parent"

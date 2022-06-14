@@ -163,7 +163,7 @@ class ProfileData : AppCompatActivity() {
     fun editMode() {
         fab?.shrink()
         fab?.text = "Сохранить"
-        fab?.icon = getDrawable(R.drawable.ic_baseline_done_24)
+        fab?.icon = getDrawable(R.drawable.done)
         editBoolean = true
         setEdit(true)
 
@@ -173,7 +173,7 @@ class ProfileData : AppCompatActivity() {
     fun saveMode() {
         setEdit(false)
         spinner?.visibility = View.VISIBLE
-        fab?.icon = getDrawable(R.drawable.ic_edit)
+        fab?.icon = getDrawable(R.drawable.edit)
         fab?.text = "Редактировать"
         editBoolean = false
         urlEncoded()

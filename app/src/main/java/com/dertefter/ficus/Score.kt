@@ -110,7 +110,7 @@ class Score : Fragment(R.layout.fragment_score) {
                                 item.findViewById<TextView>(R.id.subject).setTextColor(Color.WHITE)
                                 item.findViewById<LinearLayout>(R.id.cardPrimary1).setBackgroundColor(Color.RED)
                                 item.findViewById<ImageView>(R.id.cardPrimary2).setColorFilter(Color.RED)
-                                item.findViewById<ImageView>(R.id.cardPrimary2).setImageResource(R.drawable.ic_baseline_error_outline_24)
+                                item.findViewById<ImageView>(R.id.cardPrimary2).setImageResource(R.drawable.error)
                             }
                             semestr.addView(item)
                         }
@@ -120,7 +120,7 @@ class Score : Fragment(R.layout.fragment_score) {
                         if (i == count - 1) {
                             (scoreView?.get(i) as LinearLayout).visibility = View.VISIBLE
                         } else {
-                            (scoreView?.get(i) as LinearLayout).visibility = View.INVISIBLE
+                            (scoreView?.get(i) as LinearLayout).visibility = View.GONE
                         }
                     }
                     if (count == 0) {
@@ -153,7 +153,7 @@ class Score : Fragment(R.layout.fragment_score) {
             if (i == count - 1) {
                 (scoreView?.get(i) as LinearLayout).visibility = View.VISIBLE
             } else {
-                (scoreView?.get(i) as LinearLayout).visibility = View.INVISIBLE
+                (scoreView?.get(i) as LinearLayout).visibility = View.GONE
             }
         }
         if (count == 1) {
@@ -177,7 +177,7 @@ class Score : Fragment(R.layout.fragment_score) {
             if (i == count - 1) {
                 (scoreView?.get(i) as LinearLayout).visibility = View.VISIBLE
             } else {
-                (scoreView?.get(i) as LinearLayout).visibility = View.INVISIBLE
+                (scoreView?.get(i) as LinearLayout).visibility = View.GONE
             }
         }
         if (count == 1) {

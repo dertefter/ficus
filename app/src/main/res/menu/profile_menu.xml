@@ -3,7 +3,7 @@
 
     <item
         android:id="@+id/settings_button"
-        android:icon="@drawable/ic_baseline_settings_24"
+        android:icon="@drawable/settings"
         app:showAsAction="always"
         android:title="Настройки" />
 

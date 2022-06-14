@@ -5,7 +5,7 @@
     style="?attr/materialCardViewElevatedStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="25dp"
+    app:cardCornerRadius="20dp"
     app:cardUseCompatPadding="true">
 
     <LinearLayout
@@ -19,7 +19,7 @@
             android:id="@+id/subject"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="7dp"
+            android:layout_margin="5dp"
             android:layout_weight="1"
             android:gravity="center"
             android:maxLines="6"
@@ -68,10 +68,10 @@
 
                 <ImageView
                     android:id="@+id/cardPrimary2"
-                    android:layout_width="30dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     app:layout_gravity="right"
-                    app:srcCompat="@drawable/ic_round_check_circle_outline_24"
+                    app:srcCompat="@drawable/check_circle"
                     app:tint="?attr/colorPrimary" />
 
             </androidx.gridlayout.widget.GridLayout>

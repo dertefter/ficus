@@ -4,29 +4,44 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable-v24/ic_launcher_background.xml" value="0.121" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/account_circle.xml" value="0.1295" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/arrow_back.xml" value="0.175" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/bnav_messages.xml" value="0.1295" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/bnav_profile.xml" value="0.1295" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/bnav_score.xml" value="0.1295" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/delete.xml" value="0.1885" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/emply_devider.xml" value="0.1795" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/empty_devider_vertical.xml" value="0.1795" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_account_school.xml" value="0.1885" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.1885" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.1295" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2265" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.121" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_launcher_monochrome.xml" value="0.121" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_logo.xml" value="0.121" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_needle.xml" value="0.175" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_profile.xml" value="0.1445" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_projector_screen_outline.xml" value="0.175" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_round_account_circle_24.xml" value="0.1295" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_round_check_circle_outline_24.xml" value="0.175" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_score.xml" value="0.121" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_timetable.xml" value="0.1145" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/ic_vk_svgrepo_com.xml" value="0.1295" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/line.xml" value="0.1795" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/logo_icon_svg.xml" value="0.1295" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/round_corners.xml" value="0.1145" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/round_corners2.xml" value="0.1365" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/round_corners3.xml" value="0.1585" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/round_corners_yava.xml" value="0.1795" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/schedule_filled.xml" value="0.1295" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/school_filled.xml" value="0.1295" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/drawable/settings.xml" value="0.1885" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout-w1240dp/fragment_timetable.xml" value="0.1606425702811245" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout-w1240dp/timetable.xml" value="0.1606425702811245" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/activity_auth.xml" value="0.20742753623188406" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/activity_login.xml" value="0.2" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/activity_main.xml" value="0.20742753623188406" />
-        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/activity_work.xml" value="0.144" />
+        <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/activity_work.xml" value="0.264" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/fragment_day.xml" value="0.18631006346328197" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/fragment_score.xml" value="0.2" />
         <entry key="..\:/Users/Dertefter/Desktop/android/NSTU_Mobile/app/src/main/res/layout/item.xml" value="0.4" />

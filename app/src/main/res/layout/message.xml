@@ -29,7 +29,7 @@
             android:layout_height="80dp"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            tools:srcCompat="@drawable/ic_avatar" />
+            tools:srcCompat="@drawable/account_circle" />
 
         <LinearLayout
             android:layout_width="match_parent"

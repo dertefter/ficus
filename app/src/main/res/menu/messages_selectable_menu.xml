@@ -3,9 +3,8 @@
 
     <item
         android:id="@+id/delete_many"
-        android:icon="@drawable/ic_baseline_delete_24"
-        app:showAsAction="always"
+        android:icon="@drawable/delete"
         android:title=""
-        />
+        app:showAsAction="always" />
 
 </menu>
