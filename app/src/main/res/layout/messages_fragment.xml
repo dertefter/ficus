@@ -17,22 +17,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
             android:orientation="vertical">
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:layout_width="320dp"
-                android:layout_height="320dp"
-                android:layout_gravity="center_horizontal"
-                android:foregroundGravity="center"
-                android:outlineProvider="background"
-                android:scaleX="1"
-                android:scaleY="1"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:lottie_autoPlay="true"
-                app:lottie_loop="true"
-                app:lottie_rawRes="@raw/search" />
 
             <TextView
                 android:id="@+id/no_mes_text"
@@ -112,8 +98,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="5dp"
-            android:paddingRight="5dp" />
+            android:paddingLeft="6dp"
+            android:paddingRight="6dp" />
     </androidx.core.widget.NestedScrollView>
 
 

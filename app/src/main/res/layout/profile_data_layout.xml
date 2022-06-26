@@ -46,17 +46,13 @@
                             android:textColor="?attr/colorOnTertiary"
                             android:textSize="20sp" />
 
-                        <Space
-                            android:layout_width="match_parent"
-                            android:layout_height="3dp" />
-
                         <TextView
                             android:id="@+id/fullgroup"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="3dp"
                             android:paddingLeft="10dp"
-                            android:paddingTop="10dp"
+                            android:paddingTop="6dp"
                             android:paddingRight="10dp"
                             android:paddingBottom="10dp"
                             android:textColor="?attr/colorOnTertiary"

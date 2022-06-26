@@ -37,8 +37,7 @@
             android:name=".Settings"
             android:exported="false"
             android:noHistory="true"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.NSTUMobile.NoBar" />
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ProfileData"
             android:exported="false"
@@ -53,7 +52,8 @@
             android:name=".Login"
             android:exported="true"
             android:noHistory="true"
-            android:theme="@style/Theme.NSTUMobile.NoBar" />
+            android:screenOrientation="portrait"
+       />
 
     </application>
 

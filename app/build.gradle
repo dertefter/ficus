@@ -5,14 +5,21 @@ plugins {
 }
 
 android {
+    signingConfigs {
+        config {
+            storeFile file('C:\\Users\\Dertefter\\AndroidStudioProjects\\Keys\\keys.jks')
+            storePassword 'zerozero1'
+            keyAlias 'Ficus'
+            keyPassword 'zerozero1'
+        }
+    }
     compileSdk 32
 
     defaultConfig {
         applicationId "com.dertefter.ficus"
         minSdk 27
         targetSdk 32
-        versionCode 1
-        versionName "3"
+        versionCode 4
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -20,6 +27,7 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
         }
     }
     compileOptions {

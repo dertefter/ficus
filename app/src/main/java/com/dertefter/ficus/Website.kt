@@ -67,7 +67,6 @@ class Website {
                         group += txt[i]
                     }
 
-                    Log.e("group", group)
                     AppPreferences.group = group
                     ViewStudy()
 
@@ -106,7 +105,6 @@ class Website {
             withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
                     val pretty = response.body()?.string().toString()
-                    Log.i("Got :", pretty)
                     val context: Context = Auth.applicationContext()
                     val inta =
                         Intent(context, Work::class.java).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -128,7 +126,6 @@ class Website {
 
         val jsonObjectString =
             "{\"authId\":\"eyAidHlwIjogIkpXVCIsICJhbGciOiAiSFMyNTYiIH0.eyAib3RrIjogInR2ZW9yazY0dHU5aDc5dTRtb2xoZTBrb3NkIiwgInJlYWxtIjogIm89bG9naW4sb3U9c2VydmljZXMsZGM9b3BlbmFtLGRjPWNpdSxkYz1uc3R1LGRjPXJ1IiwgInNlc3Npb25JZCI6ICJBUUlDNXdNMkxZNFNmY3dIV1l6elZqbTdlbjREYXptS2ZfQktXLTA0UGR1M0lMay4qQUFKVFNRQUNNRElBQWxOTEFCTTJNamc0T0RrM05qUXpNVFE1TXpJMk56TTUqIiB9.iQ7F98fLLFrcDlSI5kYU14d9_Dg9lKN5meoGYIdXxcA\",\"template\":\"\",\"stage\":\"JDBCExt1\",\"header\":\"Авторизация\",\"callbacks\":[{\"type\":\"NameCallback\",\"output\":[{\"name\":\"prompt\",\"value\":\"Логин:\"}],\"input\":[{\"name\":\"IDToken1\",\"value\":\"$login\"}]},{\"type\":\"PasswordCallback\",\"output\":[{\"name\":\"prompt\",\"value\":\"Пароль:\"}],\"input\":[{\"name\":\"IDToken2\",\"value\":\"$password\"}]}]}"
-        Log.e("a", jsonObjectString)
         val requestBody = jsonObjectString.toRequestBody("application/json".toMediaTypeOrNull())
         CoroutineScope(Dispatchers.Main).launch {
 
@@ -147,7 +144,6 @@ class Website {
                         val Jobject = JSONObject(prettyJson)
                         tokenId = Jobject.getString("tokenId").toString()
                         AppPreferences.token = tokenId
-                        Log.d("token^ ", tokenId)
                         var CookieString = "\"NstuSsoToken\"=\"$tokenId\""
                         val requestBody2 =
                             CookieString.toRequestBody("application/json".toMediaTypeOrNull())
@@ -167,8 +163,6 @@ class Website {
                                                 ?.string() // About this thread blocking annotation : https://github.com/square/retrofit/issues/3255
                                         )
                                     )
-
-                                    Log.e("Pretty Printed JSON :", "part 2 success")
                                     retrofit.newBuilder()
                                         .baseUrl("https://login.nstu.ru/ssoservice/json/users/$login/")
                                         .build()
@@ -183,7 +177,6 @@ class Website {
 
                                         withContext(Dispatchers.Main) {
                                             if (response.isSuccessful) {
-                                                Log.e("AuthPart3 :", "Success")
                                                 retrofit.newBuilder().baseUrl(url1).build()
                                                 val requestBody4 =
                                                     CookieString.toRequestBody("application/json".toMediaTypeOrNull())
@@ -202,7 +195,6 @@ class Website {
                                                                 AppPreferences.password = password
                                                                 getGroup()
                                                             }
-                                                            Log.e("PART4 :", "Okey")
 
                                                         } else {
                                                             val context: Context =

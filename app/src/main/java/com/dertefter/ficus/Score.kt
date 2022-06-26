@@ -90,21 +90,31 @@ class Score : Fragment(R.layout.fragment_score) {
                         for (j in trs) {
                             val item: View = mInflater.inflate(R.layout.score_item, null, false)
                             item.findViewById<TextView>(R.id.subject).text =
-                                j.select("td")[1].ownText().toString()
+                                j.select("td")[1]?.ownText().toString()
                             item.findViewById<TextView>(R.id.count).text =
-                                "Балл: " + j.select("td")[3].select("span").first().ownText()
+                                "Балл: " + j.select("td")[3]?.select("span")?.first()?.ownText()
                                     .toString()
                             item.findViewById<TextView>(R.id.ECTS).text =
-                                "ECTS: " + j.select("td")[5].select("span").first().ownText()
+                                "ECTS: " + j.select("td")[5]?.select("span")?.first()?.ownText()
                                     .toString()
                             item.findViewById<TextView>(R.id.finaly).text =
-                                "Оценка: " + j.select("td")[4].select("span").first().ownText()
+                                "Оценка: " + j.select("td")[4]?.select("span")?.first()?.ownText()
                                     .toString().replace("Зач", "Зачёт")
                             var accept = true
-                            val checkString = j.select("td")[4].select("span").first().ownText()
+                            val checkString = j.select("td")[4]?.select("span")?.first()?.ownText()
                                 .toString().replace("Зач", "Зачёт")
                             if (checkString != "Зачёт" && checkString != "5" && checkString != "4" && checkString != "3"){
                                 accept = false
+                            }
+                            if (j.select("span.warning_text").text() == "Н/Я"){
+                                item.findViewById<TextView>(R.id.ECTS).visibility = View.GONE
+                                item.findViewById<TextView>(R.id.count).visibility = View.GONE
+                                item.findViewById<TextView>(R.id.finaly).text = "Оценка" + j.select("span.warning_text").text().toString()
+                            }
+                            else if (j.select("span.warning_text").text() == "Н/Д"){
+                                item.findViewById<TextView>(R.id.ECTS).visibility = View.GONE
+                                item.findViewById<TextView>(R.id.count).visibility = View.GONE
+                                item.findViewById<TextView>(R.id.finaly).text = "Оценка: Не допуск"
                             }
                             if (!accept){
                                 item.findViewById<TextView>(R.id.subject).setTextColor(Color.WHITE)
