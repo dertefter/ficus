@@ -11,26 +11,22 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:padding="6dp">
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginRight="6dp"
-            android:orientation="horizontal">
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:background="?attr/colorSurfaceVariant"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
 
                 android:id="@+id/date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="10dp"
-                android:background="@drawable/round_corners2"
-                android:textColor="@color/md_theme_light_onError"
-                android:textSelectHandleRight="@drawable/round_corners"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="14sp" />
 
             <TextView
@@ -38,31 +34,38 @@
                 android:id="@+id/time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/round_corners"
-                android:textColor="@color/md_theme_light_onError"
-                android:textSelectHandleRight="@drawable/round_corners"
+                android:layout_marginTop="3dp"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 android:textSize="14sp" />
         </LinearLayout>
 
-        <TextView
-
-            android:id="@+id/exam"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="6dp"
-            android:textSize="18sp" />
+            android:orientation="vertical"
+            android:padding="6dp">
 
-        <TextView
+            <TextView
 
-            android:id="@+id/aud"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="6dp"
-            android:layout_marginBottom="6dp"
-            android:textAllCaps="false"
-            android:textSize="16sp" />
+                android:id="@+id/exam"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="6dp"
+                android:textSize="16sp" />
+
+            <TextView
+
+                android:id="@+id/aud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginBottom="6dp"
+                android:textAllCaps="false"
+                android:textSize="14sp" />
+        </LinearLayout>
+
     </LinearLayout>
 
 

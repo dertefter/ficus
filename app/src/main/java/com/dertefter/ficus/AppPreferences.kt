@@ -6,20 +6,22 @@ import androidx.core.content.edit
 object AppPreferences {
     private var sharedPreferences: SharedPreferences? = null
 
-    // TODO step 1: call `AppPreferences.setup(applicationContext)` in your MainActivity's `onCreate` method
     fun setup(context: Context) {
-        // TODO step 2: set your app name here
+
         sharedPreferences = context.getSharedPreferences("ficus.sharedprefs", MODE_PRIVATE)
     }
 
-    // TODO step 4: replace these example attributes with your stored values
     var login: String?
         get() = Key.LOGIN.getString()
         set(value) = Key.LOGIN.setString(value)
 
-    var Yava: Boolean?
-        get() = Key.YAVA.getBoolean()
-        set(value) = Key.YAVA.setBoolean(value)
+    var theme: String?
+        get() = Key.THEME.getString()
+        set(value) = Key.THEME.setString(value)
+
+    var Review: Boolean?
+        get() = Key.REV.getBoolean()
+        set(value) = Key.REV.setBoolean(value)
 
     var password: String?
         get() = Key.PASSWORD.getString()
@@ -42,7 +44,7 @@ object AppPreferences {
         set(value) = Key.FULLNAME.setString(value)
 
     private enum class Key {
-        LOGIN, PASSWORD, GROUP, TOKEN, NAME, FULLNAME, YAVA;
+        LOGIN, PASSWORD, GROUP, TOKEN, NAME, FULLNAME, REV, THEME;
 
         fun getBoolean(): Boolean? =
             if (sharedPreferences!!.contains(name)) sharedPreferences!!.getBoolean(

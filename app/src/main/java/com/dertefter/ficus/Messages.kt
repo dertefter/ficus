@@ -9,11 +9,13 @@ import android.util.TypedValue
 import android.view.LayoutInflater
 import androidx.appcompat.view.ActionMode
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
+import androidx.core.view.*
 import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.card.MaterialCardView
@@ -250,8 +252,10 @@ class Messages : Fragment(R.layout.messages_fragment) {
         mInflater = LayoutInflater.from(activity)
         spinner = view.findViewById(R.id.spinner_mes)
         toolbar = view.findViewById(R.id.toolbar_messages)
+        toolbar?.addSystemWindowInsetToMargin(top = true)
         no_mesTextView = view.findViewById(R.id.no_mes_text)
         selectableToolbar = view.findViewById(R.id.Stoolbar_messages)
+        selectableToolbar?.addSystemWindowInsetToMargin(top = true)
         selectableToolbarLayout = view.findViewById(R.id.SAppBarLayout)
         selectableToolbar?.setOnMenuItemClickListener{menuItem ->
             when(menuItem.itemId){
@@ -298,6 +302,52 @@ class Messages : Fragment(R.layout.messages_fragment) {
                 }
                 else -> false
             }
+        }
+    }
+
+    fun View.addSystemWindowInsetToPadding(
+        left: Boolean = false,
+        top: Boolean = false,
+        right: Boolean = false,
+        bottom: Boolean = false
+    ) {
+        val (initialLeft, initialTop, initialRight, initialBottom) =
+            listOf(paddingLeft, paddingTop, paddingRight, paddingBottom)
+
+        ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
+            view.updatePadding(
+                left = initialLeft + (if (left) insets.systemWindowInsetLeft else 0),
+                top = initialTop + (if (top) insets.systemWindowInsetTop else 0),
+                right = initialRight + (if (right) insets.systemWindowInsetRight else 0),
+                bottom = initialBottom + (if (bottom) insets.systemWindowInsetBottom else 0)
+            )
+
+            insets
+        }
+    }
+
+    fun View.addSystemWindowInsetToMargin(
+        left: Boolean = false,
+        top: Boolean = false,
+        right: Boolean = false,
+        bottom: Boolean = false
+    ) {
+        val (initialLeft, initialTop, initialRight, initialBottom) =
+            listOf(marginLeft, marginTop, marginRight, marginBottom)
+
+        ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
+            view.updateLayoutParams {
+                (this as? ViewGroup.MarginLayoutParams)?.let {
+                    updateMargins(
+                        left = initialLeft + (if (left) insets.systemWindowInsetLeft else 0),
+                        top = initialTop + (if (top) insets.systemWindowInsetTop else 0),
+                        right = initialRight + (if (right) insets.systemWindowInsetRight else 0),
+                        bottom = initialBottom + (if (bottom) insets.systemWindowInsetBottom else 0)
+                    )
+                }
+            }
+
+            insets
         }
     }
 }

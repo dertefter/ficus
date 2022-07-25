@@ -32,7 +32,6 @@
             @android:color/transparent
         </item>
 
-
         <!-- Optional: set to transparent if your app is drawing behind the status bar. -->
         <item name="android:statusBarColor">
             @android:color/transparent
@@ -46,6 +45,7 @@
     </style>
 
     <style name="Theme.NSTUMobile.ReadMessage" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:windowLightNavigationBar">true</item>
         <item name="colorPrimary">@color/md_theme_light_primary</item>
         <item name="colorOnPrimary">@color/md_theme_dark_inverseSurface</item>
         <item name="colorPrimaryContainer">@color/md_theme_light_primaryContainer</item>
@@ -72,7 +72,6 @@
         <item name="colorOnSurfaceInverse">@color/md_theme_light_inverseOnSurface</item>
         <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_light_inversePrimary</item>
-        <item name="android:windowLightNavigationBar">true</item>
         <item name="android:navigationBarColor">
             @android:color/transparent
         </item>
@@ -121,6 +120,10 @@
         <item name="android:navigationBarColor">@color/md_theme_light_background</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
+    <!--
+    Having themes.xml for v31 variant because @android:dimen/system_app_widget_background_radius
+     and @android:dimen/system_app_widget_internal_padding requires API level 31
+    -->
 
 
 </resources>

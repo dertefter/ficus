@@ -28,7 +28,6 @@
             android:id="@+id/toolbar_shedule"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_marginTop="28dp"
             android:clipToPadding="false"
             android:fitsSystemWindows="false"
             app:layout_scrollFlags="scroll|enterAlways|snap"
@@ -193,7 +192,8 @@
                     android:foregroundGravity="center"
                     android:gravity="center"
                     android:textColor="?attr/colorOnPrimary"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:translationX="0dp" />
 
                 <ImageButton
                     android:id="@+id/arrowRight"

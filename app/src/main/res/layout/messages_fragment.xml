@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="false"
+    android:id="@+id/messages_fragment"
     tools:context=".Work">
 
     <FrameLayout
@@ -49,13 +50,12 @@
         android:clipToPadding="false"
         android:fitsSystemWindows="false"
         android:visibility="invisible"
-        app:liftOnScroll="true">
+        app:liftOnScroll="false">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/Stoolbar_messages"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_marginTop="28dp"
             android:clipToPadding="false"
             android:fitsSystemWindows="false"
             app:layout_scrollFlags="scroll|enterAlways|snap"
@@ -77,7 +77,6 @@
             android:id="@+id/toolbar_messages"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_marginTop="28dp"
             android:clipToPadding="false"
             android:fitsSystemWindows="false"
             app:layout_scrollFlags="scroll|enterAlways|snap"
@@ -87,6 +86,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/messagesScrollView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"

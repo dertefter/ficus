@@ -20,7 +20,6 @@
             android:id="@+id/toolbar_score"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:layout_marginTop="28dp"
             app:layout_scrollFlags="scroll|enterAlways|snap"
             app:title="Зачётка" />
     </com.google.android.material.appbar.AppBarLayout>

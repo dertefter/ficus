@@ -1,18 +1,20 @@
 package com.dertefter.ficus
 
 import AppPreferences
+import android.animation.ObjectAnimator
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.appcompat.widget.Toolbar
 import androidx.cardview.widget.CardView
-import androidx.core.view.get
+import androidx.core.view.*
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import kotlinx.coroutines.CoroutineScope
@@ -237,6 +239,9 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
     }
 
     fun arrowRight() {
+        val a = ObjectAnimator.ofFloat(dayView, "translationX", 300f, 0f)
+        a.duration = 140
+        a.start()
         if (day < 6) {
             day++
             for (i in 0..5) {
@@ -273,6 +278,9 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
     }
 
     fun arrowLeft() {
+        val a = ObjectAnimator.ofFloat(dayView, "translationX", -300f, 0f)
+        a.duration = 140
+        a.start()
         if (day > 1) {
             day--
             for (i in 0..5) {
@@ -365,10 +373,9 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
         }
 
         timeTableScrollView = view.findViewById(R.id.timetable_scrollview)
-        //lineartimeTable = view.findViewById(R.id.linerarTimetable)
 
         toolbar = view.findViewById(R.id.toolbar_shedule)
-
+        toolbar?.addSystemWindowInsetToMargin(top = true)
         if (AppPreferences.group != null) {
             gr = AppPreferences.group!!
         } else {
@@ -408,5 +415,51 @@ class timeTable : Fragment(R.layout.timetable_fragment) {
 
     }
 
+
+    fun View.addSystemWindowInsetToPadding(
+        left: Boolean = false,
+        top: Boolean = false,
+        right: Boolean = false,
+        bottom: Boolean = false
+    ) {
+        val (initialLeft, initialTop, initialRight, initialBottom) =
+            listOf(paddingLeft, paddingTop, paddingRight, paddingBottom)
+
+        ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
+            view.updatePadding(
+                left = initialLeft + (if (left) insets.systemWindowInsetLeft else 0),
+                top = initialTop + (if (top) insets.systemWindowInsetTop else 0),
+                right = initialRight + (if (right) insets.systemWindowInsetRight else 0),
+                bottom = initialBottom + (if (bottom) insets.systemWindowInsetBottom else 0)
+            )
+
+            insets
+        }
+    }
+
+    fun View.addSystemWindowInsetToMargin(
+        left: Boolean = false,
+        top: Boolean = false,
+        right: Boolean = false,
+        bottom: Boolean = false
+    ) {
+        val (initialLeft, initialTop, initialRight, initialBottom) =
+            listOf(marginLeft, marginTop, marginRight, marginBottom)
+
+        ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
+            view.updateLayoutParams {
+                (this as? ViewGroup.MarginLayoutParams)?.let {
+                    updateMargins(
+                        left = initialLeft + (if (left) insets.systemWindowInsetLeft else 0),
+                        top = initialTop + (if (top) insets.systemWindowInsetTop else 0),
+                        right = initialRight + (if (right) insets.systemWindowInsetRight else 0),
+                        bottom = initialBottom + (if (bottom) insets.systemWindowInsetBottom else 0)
+                    )
+                }
+            }
+
+            insets
+        }
+    }
 }
 

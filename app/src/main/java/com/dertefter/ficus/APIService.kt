@@ -8,6 +8,16 @@ import retrofit2.http.*
 
 interface APIService {
 
+    @GET(".")
+    suspend fun getNews(@Query("main_events") page: String?): Response<ResponseBody>
+
+    @FormUrlEncoded
+    @POST("cgi-bin/koha/opac-user.pl")
+    suspend fun authBooks(@FieldMap params: HashMap<String?, String?>): Response<ResponseBody>
+
+    @GET("cgi-bin/koha/opac-user.pl")
+    suspend fun getBooks(): Response<ResponseBody>
+
     @POST("ssoservice/json/authenticate")
     suspend fun authPart1(@Body requestBody: RequestBody): Response<ResponseBody>
 

@@ -3,10 +3,12 @@ package com.dertefter.ficus
 import AppPreferences
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ScrollView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
+import androidx.core.view.*
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -25,6 +27,53 @@ class ReadMessageActivity : AppCompatActivity() {
     var text: TextView? = null
     var fab: FloatingActionButton? = null
     var scrollView: ScrollView? = null
+
+    private fun View.addSystemWindowInsetToPadding(
+        left: Boolean = false,
+        top: Boolean = false,
+        right: Boolean = false,
+        bottom: Boolean = false
+    ) {
+        val (initialLeft, initialTop, initialRight, initialBottom) =
+            listOf(paddingLeft, paddingTop, paddingRight, paddingBottom)
+
+        ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
+            view.updatePadding(
+                left = initialLeft + (if (left) insets.systemWindowInsetLeft else 0),
+                top = initialTop + (if (top) insets.systemWindowInsetTop else 0),
+                right = initialRight + (if (right) insets.systemWindowInsetRight else 0),
+                bottom = initialBottom + (if (bottom) insets.systemWindowInsetBottom else 0)
+            )
+
+            insets
+        }
+    }
+
+    private fun View.addSystemWindowInsetToMargin(
+        left: Boolean = false,
+        top: Boolean = false,
+        right: Boolean = false,
+        bottom: Boolean = false
+    ) {
+        val (initialLeft, initialTop, initialRight, initialBottom) =
+            listOf(marginLeft, marginTop, marginRight, marginBottom)
+
+        ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
+            view.updateLayoutParams {
+                (this as? ViewGroup.MarginLayoutParams)?.let {
+                    updateMargins(
+                        left = initialLeft + (if (left) insets.systemWindowInsetLeft else 0),
+                        top = initialTop + (if (top) insets.systemWindowInsetTop else 0),
+                        right = initialRight + (if (right) insets.systemWindowInsetRight else 0),
+                        bottom = initialBottom + (if (bottom) insets.systemWindowInsetBottom else 0)
+                    )
+                }
+            }
+
+            insets
+        }
+    }
+
 
     private fun deleteThis(MessageID: String) {
         var tokenId = AppPreferences.token
@@ -88,6 +137,8 @@ class ReadMessageActivity : AppCompatActivity() {
         toolbar = findViewById(R.id.toolbar_read_message)
         text = findViewById(R.id.read_message_text)
         fab = findViewById(R.id.delete_this)
+        fab?.addSystemWindowInsetToMargin(bottom = true)
+        toolbar?.addSystemWindowInsetToPadding(top = true)
         val get_theme = intent.getStringExtra("theme")
         val get_text = intent.getStringExtra("text")
         val get_send_by = intent.getStringExtra("send_by")

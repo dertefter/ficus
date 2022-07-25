@@ -9,11 +9,12 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.cardview.widget.CardView
-import androidx.core.view.get
+import androidx.core.view.*
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import com.google.android.material.color.MaterialColors
@@ -156,6 +157,9 @@ class Score : Fragment(R.layout.fragment_score) {
     }
 
     fun arrowLeft() {
+        val a = ObjectAnimator.ofFloat(semTextView, "translationX", -300f, 0f)
+        a.duration = 140
+        a.start()
         if (count > 1) {
             count--
         }
@@ -180,6 +184,9 @@ class Score : Fragment(R.layout.fragment_score) {
     }
 
     fun arrowRight() {
+        val a = ObjectAnimator.ofFloat(semTextView, "translationX", 300f, 0f)
+        a.duration = 140
+        a.start()
         if (count < max_count) {
             count++
         }
@@ -206,6 +213,7 @@ class Score : Fragment(R.layout.fragment_score) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         scoreView = view.findViewById(R.id.score_view)
+        view.findViewById<Toolbar>(R.id.toolbar_score).addSystemWindowInsetToMargin(top = true)
         semSelection = view.findViewById(R.id.scoreSelection)
         semTextView = view.findViewById(R.id.score_state)
         scrollView = view.findViewById(R.id.nestedScrollView)
@@ -226,9 +234,52 @@ class Score : Fragment(R.layout.fragment_score) {
         }
         score()
 
-
-
     }
 
+    fun View.addSystemWindowInsetToPadding(
+        left: Boolean = false,
+        top: Boolean = false,
+        right: Boolean = false,
+        bottom: Boolean = false
+    ) {
+        val (initialLeft, initialTop, initialRight, initialBottom) =
+            listOf(paddingLeft, paddingTop, paddingRight, paddingBottom)
+
+        ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
+            view.updatePadding(
+                left = initialLeft + (if (left) insets.systemWindowInsetLeft else 0),
+                top = initialTop + (if (top) insets.systemWindowInsetTop else 0),
+                right = initialRight + (if (right) insets.systemWindowInsetRight else 0),
+                bottom = initialBottom + (if (bottom) insets.systemWindowInsetBottom else 0)
+            )
+
+            insets
+        }
+    }
+
+    fun View.addSystemWindowInsetToMargin(
+        left: Boolean = false,
+        top: Boolean = false,
+        right: Boolean = false,
+        bottom: Boolean = false
+    ) {
+        val (initialLeft, initialTop, initialRight, initialBottom) =
+            listOf(marginLeft, marginTop, marginRight, marginBottom)
+
+        ViewCompat.setOnApplyWindowInsetsListener(this) { view, insets ->
+            view.updateLayoutParams {
+                (this as? ViewGroup.MarginLayoutParams)?.let {
+                    updateMargins(
+                        left = initialLeft + (if (left) insets.systemWindowInsetLeft else 0),
+                        top = initialTop + (if (top) insets.systemWindowInsetTop else 0),
+                        right = initialRight + (if (right) insets.systemWindowInsetRight else 0),
+                        bottom = initialBottom + (if (bottom) insets.systemWindowInsetBottom else 0)
+                    )
+                }
+            }
+
+            insets
+        }
+    }
 
 }

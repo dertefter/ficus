@@ -10,8 +10,8 @@
 
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottieAnimationView"
-        android:layout_width="280dp"
-        android:layout_height="270dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -21,6 +21,18 @@
         app:lottie_loop="false"
         app:lottie_rawRes="@raw/ficus"
         app:lottie_speed="0.9" />
+
+    <ImageView
+        android:id="@+id/authIcon"
+        android:layout_width="107dp"
+        android:layout_height="107dp"
+        android:alpha="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/nstulogo"
+        app:tint="?attr/colorOnBackground" />
 
     <TextView
         android:id="@+id/auth_text1"

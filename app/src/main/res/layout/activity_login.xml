@@ -5,19 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:gravity="center_horizontal"
-        android:text="Авторизация"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="wrap_content"
@@ -34,13 +21,9 @@
             android:layout_gravity="center"
             android:orientation="vertical">
 
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="24dp" />
-
             <EditText
                 android:id="@+id/login"
-                android:layout_width="281dp"
+                android:layout_width="276dp"
                 android:layout_height="56dp"
                 android:autofillHints=""
                 android:ems="10"
@@ -52,7 +35,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="18dp" />
+                android:layout_height="16dp" />
 
             <EditText
                 android:id="@+id/password"
@@ -71,7 +54,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="54dp"
                 android:layout_marginLeft="80dp"
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginRight="80dp"
                 android:layout_marginBottom="5dp"
                 android:enabled="false"
@@ -91,5 +74,55 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="1dp"
+        android:layout_marginEnd="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:padding="5dp"
+            app:srcCompat="@drawable/nstulogo"
+            app:tint="?attr/colorOnBackground" />
+
+        <Space
+            android:layout_width="18dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="Авторизация"
+                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+                android:textStyle="normal|bold" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="7dp"
+                android:text="Личный кабинет студента" />
+        </LinearLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

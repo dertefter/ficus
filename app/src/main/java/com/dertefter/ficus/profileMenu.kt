@@ -6,6 +6,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.gridlayout.widget.GridLayout
 import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -26,8 +27,11 @@ import retrofit2.Retrofit
 class profileMenu : Fragment(R.layout.profile_menu) {
     var nameText: TextView? = null
     var wifiButton: LinearLayout? = null
+    var campusButton: LinearLayout? = null
+    var booksButton: LinearLayout? = null
+    var workButton: LinearLayout? = null
     var profileDataButton: MaterialCardView? = null
-    var vk: ImageButton? = null
+    var github: ImageButton? = null
     var tg: ImageButton? = null
 
     fun editProfile() {
@@ -42,25 +46,41 @@ class profileMenu : Fragment(R.layout.profile_menu) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         profileDataButton = view.findViewById(R.id.profile_data_button)
+        campusButton = view.findViewById(R.id.campus_button)
+        booksButton = view.findViewById(R.id.books_button)
         wifiButton = view.findViewById(R.id.wifi_button)
-        vk = view.findViewById(R.id.vk)
+        workButton = view.findViewById(R.id.work_button)
+        workButton?.setOnClickListener {
+            val browserIntent =
+                Intent(Intent.ACTION_VIEW, Uri.parse("http://om.nstu.ru/"))
+            startActivity(browserIntent)
+        }
+        github = view.findViewById(R.id.gitbutton)
         tg = view.findViewById(R.id.tg)
         tg?.setOnClickListener {
             val browserIntent =
-                Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/nstumobile_dev/"))
+            Intent(Intent.ACTION_VIEW, Uri.parse("https://t.me/nstumobile_dev/"))
             startActivity(browserIntent)
         }
-        vk?.setOnClickListener {
-            val browserIntent = Intent(
-                Intent.ACTION_VIEW,
-                Uri.parse("https://vk.me/join/GLo5/Ww6z/8vDWV4nZnNx/KTu4rx_2g07Dc=")
-            )
+        github?.setOnClickListener {
+            val browserIntent =
+                Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/dertefter/ficus/"))
             startActivity(browserIntent)
         }
-
-
-
-
+        campusButton?.setOnClickListener {
+            val campusIntent = Intent(
+                Auth.applicationContext(),
+                Campus::class.java
+            ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            Auth.applicationContext().startActivity(campusIntent)
+        }
+        booksButton?.setOnClickListener {
+            val campusIntent = Intent(
+                Auth.applicationContext(),
+                Books::class.java
+            ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            Auth.applicationContext().startActivity(campusIntent)
+        }
         profileDataButton?.setOnClickListener {
             editProfile()
 

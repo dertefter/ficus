@@ -12,6 +12,12 @@
         android:longClickable="false"
         android:icon="@drawable/bnav_score" />
     <item
+        android:id="@+id/news_nav"
+        android:title=""
+        android:tooltipText="@null"
+        android:longClickable="false"
+        android:icon="@drawable/ic_news" />
+    <item
         android:id="@+id/messages_nav"
         android:tooltipText="@null"
         android:title="Сообщения"
